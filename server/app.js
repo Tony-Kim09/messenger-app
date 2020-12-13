@@ -3,6 +3,8 @@ const express = require("express");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const mongoose = require("mongoose");
+const config = require('./utils/config');
 
 const indexRouter = require("./routes/index");
 const pingRouter = require("./routes/ping");
@@ -10,6 +12,19 @@ const pingRouter = require("./routes/ping");
 const { json, urlencoded } = express;
 
 var app = express();
+
+mongoose.connect(config.MONGODB_URL, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true, 
+  useFindAndModify: false, 
+  useCreateIndex: true 
+})
+        .then(() => {
+          console.log("successfully connected to MongoDB");
+        })
+        .catch((error) => {
+          console.log("There was an error connecting to MongoDB: ", error.message);
+        })
 
 app.use(logger("dev"));
 app.use(json());
