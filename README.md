@@ -13,7 +13,7 @@ server to connect to. You should also set a PORT variable of your desired PORT n
 
 Example:
 
-MONGODB_URL="mylocaldatabase.example"
+MONGODB_URL="mylocaldatabase.example"  
 PORT=3001
 
 ## Connecting to the Database Server
