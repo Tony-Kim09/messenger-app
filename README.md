@@ -6,11 +6,12 @@ This starter repo will be used for building applications using React, Material-U
 
 The project is broken down into a client and server folder.
 
-## Connecting to the Database Server
+## Setting up .env file for connecting to Database Server
 
-Install required packages by running "npm install"
-
-Update the .env variable and set MONGODB_URL variable to the appropriate 
+Update the .env variable located in the server directory and set MONGODB_URI variable to the appropriate 
 server to connect to.
 
-Then finally, simply run command "npm run dev"
+## Connecting to the Database Server
+
+Install required packages by running "npm install".
+Then simply run command "npm run dev"
