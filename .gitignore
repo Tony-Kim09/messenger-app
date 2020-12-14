@@ -22,3 +22,6 @@ yarn-error.log*
 #TODO add .env to your gitignore
 
 server/.env
+
+#Quick Test File for RestClient in VScode
+post_user.rest

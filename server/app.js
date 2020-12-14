@@ -1,5 +1,6 @@
 const createError = require("http-errors");
 const express = require("express");
+require('express-async-errors')
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -8,6 +9,9 @@ const config = require('./utils/config');
 
 const indexRouter = require("./routes/index");
 const pingRouter = require("./routes/ping");
+const registerRouter = require("./routes/register");
+
+const { validationErrorHandler } = require("./utils/middleware")
 
 const { json, urlencoded } = express;
 
@@ -34,6 +38,10 @@ app.use(express.static(join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/ping", pingRouter);
+app.use("/register", registerRouter);
+
+//catch 400 validation error
+app.use(validationErrorHandler);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
