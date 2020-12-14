@@ -20,3 +20,11 @@ PORT=3001
 
 Install required packages by running "npm install".
 Then simply run command "npm run dev"
+
+## Setting up .env file for Testing purposes
+
+When running a test, please ensure that the variable TEST_MONGODB_URL is properly set to your local testing database.
+
+Example:
+
+TEST_MONGODB_URL="testlocaldb.example"
