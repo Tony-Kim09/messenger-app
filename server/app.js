@@ -1,4 +1,3 @@
-const createError = require("http-errors");
 const express = require("express");
 require('express-async-errors')
 const { join } = require("path");
@@ -10,8 +9,9 @@ const config = require('./utils/config');
 const indexRouter = require("./routes/index");
 const pingRouter = require("./routes/ping");
 const registerRouter = require("./routes/register");
+const loginRouter = require("./routes/login")
 
-const { validationErrorHandler } = require("./utils/middleware")
+const { tokenExtractor, errorHandler, unknownEndpoint, knownErrorHandler } = require("./utils/middleware");
 
 const { json, urlencoded } = express;
 
@@ -36,27 +36,20 @@ app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 
+app.use(tokenExtractor);
+
 app.use("/", indexRouter);
 app.use("/ping", pingRouter);
 app.use("/register", registerRouter);
+app.use("/login", loginRouter);
 
-//catch 400 validation error
-app.use(validationErrorHandler);
+//catch 400/401 validation error and token error
+app.use(knownErrorHandler);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+app.use(unknownEndpoint);
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.json({ error: err });
-});
+// general error handler
+app.use(errorHandler);
 
 module.exports = app;

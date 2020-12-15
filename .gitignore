@@ -25,3 +25,4 @@ server/.env
 
 #Quick Test File for RestClient in VScode
 post_user.rest
+post_login.rest
