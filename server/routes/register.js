@@ -30,7 +30,6 @@ registerRouter.post("/", async (request, response) => {
         return response.status(400).json({ error: "Email has already been used" })
     }   
 
-    //Sanitize name for extra security
     const name = sanitize(body.name);
 
     //Create New User

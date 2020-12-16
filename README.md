@@ -6,15 +6,17 @@ This starter repo will be used for building applications using React, Material-U
 
 The project is broken down into a client and server folder.
 
-## Setting up .env file for connecting to Database Server
+## Setting up .env file
 
-Update the .env variable located in the server directory and set MONGODB_URL variable to the appropriate 
-server to connect to. You should also set a PORT variable of your desired PORT number. Default is 3001.
+To Connect to your local database, set the variable MONGODB_URL to your local path  
+You should also set a PORT variable of your desired PORT number. Default is 3001.
+Next, set up SECRET variable to use for signing tokens for logins.
 
 Example:
 
 MONGODB_URL="mylocaldatabase.example"  
 PORT=3001
+SECRET="hatchways"
 
 ## Connecting to the Database Server
 
