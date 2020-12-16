@@ -11,7 +11,7 @@ const pingRouter = require("./routes/ping");
 const registerRouter = require("./routes/register");
 const loginRouter = require("./routes/login")
 
-const { tokenExtractor, errorHandler, unknownEndpoint } = require("./utils/middleware");
+const { tokenExtractorAndValidator, errorHandler, unknownEndpoint } = require("./utils/middleware");
 
 const { json, urlencoded } = express;
 
@@ -36,7 +36,7 @@ app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 
-app.use(tokenExtractor);
+app.use(tokenExtractorAndValidator);
 
 app.use("/", indexRouter);
 app.use("/ping", pingRouter);

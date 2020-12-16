@@ -1,12 +1,18 @@
+const jwt = require('jsonwebtoken')
 
 /*  Extract the token from the authorization header using bearer and set it 
     to request.token for future validation of user  */
-const tokenExtractor = (request, response, next) => {
+const tokenExtractorAndValidator = (request, response, next) => {
 
   const authorization = request.get('authorization')
   
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
     request.token = authorization.substring(7)
+    const decodedToken = jwt.verify(request.token, process.env.SECRET)
+
+    if (!decodedToken.id){
+      return response.status(403).json({ error: 'token missing or invalid'})
+    }
   } 
   
   next()
@@ -34,6 +40,6 @@ const errorHandler = (error, request, response, next) => {
 
 module.exports = {
   unknownEndpoint,
-  tokenExtractor,
+  tokenExtractorAndValidator,
   errorHandler
 };
