@@ -7,28 +7,22 @@ const User = require("../models/user");
 loginRouter.post("/", async (request, response) => {
     const body = request.body;
 
-    //Sanitize Email
     const sanitizedEmail = sanitize(body.email);
 
-    //Search for the username in the database 
     const user = await User.findOne({ email: sanitizedEmail });
 
-    //If username does not exist, no need to check for password correctness
-    //If it exists, compare the password using bcrypt
+    //Check for password if username exists
     const passwordIsCorrect = user === null 
                                 ? false
                                 : await bcrypt.compare(body.password, user.password);
                             
-    //Send error if either user does not exist or password is incorrect
-    //Additional security as hackers won't know which is incorrect
-
     if(!(user && passwordIsCorrect)) {
         return response.status(401).json({
             error: "invalid username or password"
         });
     }
 
-    //Set up user object to sign Token. Id is used for unique identification
+    //Set up object to sign Token with user id as it is unique
     const userToken = {
         username: user.username,
         id: user._id,
@@ -37,7 +31,6 @@ loginRouter.post("/", async (request, response) => {
     //Use the SECRET in .env to sign the token that expires in 7 days
     const token = jwt.sign(userToken, process.env.SECRET, { expiresIn: "7d" });
 
-    //Respond with the token, username and name
     response
         .status(200)
         .send({ token, username: user.username, name: user.name});

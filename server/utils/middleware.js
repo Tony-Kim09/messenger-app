@@ -7,36 +7,34 @@ const tokenExtractor = (request, response, next) => {
   
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
     request.token = authorization.substring(7)
+  } else {
+    return response.status(401).json({ error: "no token" });
   }
   next()
 };
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).json({ error: 'that page does not exist' })
+  response.status(404).json({ error: "that page does not exist" })
 };
 
-const knownErrorHandler = (error, request, response, next) => {
+const errorHandler = (error, request, response, next) => {
     if (error.name === 'ValidationError') {
       return response.status(400).json({ error: "Please fill in all the blanks" })
     } else if (error.name === 'JsonWebTokenError') {
       return response.status(401).json({ error: 'invalid token'})
     }
-    next(error)
+
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
+  
+    // render the error page
+    res.status(err.status || 500);
+    res.json({ error: err });
 }
-
-const errorHandler = (error, request, response, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.json({ error: err });
-};
 
 module.exports = {
   unknownEndpoint,
-  knownErrorHandler,
   tokenExtractor,
   errorHandler
 };

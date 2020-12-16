@@ -11,7 +11,7 @@ const pingRouter = require("./routes/ping");
 const registerRouter = require("./routes/register");
 const loginRouter = require("./routes/login")
 
-const { tokenExtractor, errorHandler, unknownEndpoint, knownErrorHandler } = require("./utils/middleware");
+const { tokenExtractor, errorHandler, unknownEndpoint } = require("./utils/middleware");
 
 const { json, urlencoded } = express;
 
@@ -42,9 +42,6 @@ app.use("/", indexRouter);
 app.use("/ping", pingRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
-
-//catch 400/401 validation error and token error
-app.use(knownErrorHandler);
 
 // catch 404 and forward to error handler
 app.use(unknownEndpoint);
