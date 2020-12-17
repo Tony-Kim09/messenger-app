@@ -3,18 +3,20 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import loginRegisterStyles from "../themes/loginAndRegister";
 
-const RegisterForm = ({ classStyle }) => {
+const RegisterForm = () => {
+  const classes = loginRegisterStyles();
 
   return (
-    <div className={classStyle.general}>
+    <div className={classes.paper}>
       <Grid container alignContent="flex-start">
-          <Typography className={classStyle.registrationHeader} component="h1" variant="h5">
+          <Typography className={classes.registrationHeader} component="h1" variant="h5">
               Create an account.
           </Typography>
       </Grid>
       <div>
-      <form className={classStyle.form}>
+      <form className={classes.form}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
               <TextField
@@ -61,7 +63,7 @@ const RegisterForm = ({ classStyle }) => {
                 type="submit"
                 variant="contained"
                 color="primary"
-                className={classStyle.mainButton}
+                className={classes.mainButton}
                 disableElevation
                 >
                 Create

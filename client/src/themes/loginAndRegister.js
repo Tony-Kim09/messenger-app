@@ -1,7 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-    general: {
+//Styling for Login and Registration Page
+const loginRegisterStyles = makeStyles((theme) => ({
+    paper: {
       marginTop: theme.spacing(8),
       display: "flex",
       flexDirection: "column",
@@ -31,4 +32,4 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default useStyles;
+export default loginRegisterStyles;
