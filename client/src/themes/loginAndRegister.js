@@ -20,7 +20,7 @@ const loginRegisterStyles = makeStyles((theme) => ({
       margin: theme.spacing(1, 0, 0),
       padding: theme.spacing(1, 2),
     },
-    loginRedirect: {
+    loginRegisterRedirect: {
         marginTop: theme.spacing(8),
         display: "flex",
         flexDirection: "horizontal",

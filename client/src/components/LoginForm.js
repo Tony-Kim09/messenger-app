@@ -1,0 +1,84 @@
+import React, { useState} from "react";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import loginRegisterStyles from "../themes/loginAndRegister";
+
+//loginUser props will be the axios post call that will take user object created here as parameter
+const LoginForm = ({ loginUser }) => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const classes = loginRegisterStyles();
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  }
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  }
+
+  const submitUser = (event) => {
+    event.preventDefault();
+
+      loginUser({
+        email: email,
+        password: password
+      })
+      setEmail("");
+      setPassword("");
+  }
+
+  return (
+    <div className={classes.paper}>
+      <Grid container alignContent="flex-start">
+          <Typography component="h1" variant="h5">
+              Welcome Back!
+          </Typography>
+      </Grid>
+      <div>
+      <form className={classes.form} onSubmit={submitUser}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+              <TextField
+              value={email}
+              label="E-mail"
+              required
+              fullWidth
+              autoFocus
+              onChange={handleEmailChange}
+              />
+          </Grid>
+          <Grid item xs={12}>
+              <TextField
+              value={password}
+              type="password"
+              label="Password"
+              required
+              fullWidth
+              onChange={handlePasswordChange}
+              />
+          </Grid>
+          </Grid>
+          <Grid container justify="center">
+              <Grid item>
+                <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.mainButton}
+                disableElevation
+                >
+                Login
+                </Button>
+            </Grid>
+        </Grid>
+      </form>
+      </div>
+    </div>
+  );
+}
+
+export default LoginForm;

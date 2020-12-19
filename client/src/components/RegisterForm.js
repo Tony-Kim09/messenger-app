@@ -72,7 +72,7 @@ const RegisterForm = ({ createUser }) => {
   return (
     <div className={classes.paper}>
       <Grid container alignContent="flex-start">
-          <Typography className={classes.registrationHeader} component="h1" variant="h5">
+          <Typography component="h1" variant="h5">
               Create an account.
           </Typography>
       </Grid>
