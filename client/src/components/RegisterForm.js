@@ -20,13 +20,13 @@ const RegisterForm = ({ createUser }) => {
   const classes = loginRegisterStyles();
 
   const validate = () => {
-    let temp = {};
-    temp.username = username.length > 2 ? "" : "Minimum of 3 characters";
-    temp.password = password.length > 5 ? "" : "Minimum of 6 characters";
-    temp.email = (/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) ? "" : "Email Format is xyz@xxx.xxx";
-    setErrorMessage({ ...temp });
+    let errors = {};
+    errors.username = username.length > 2 ? "" : "Minimum of 3 characters";
+    errors.password = password.length > 5 ? "" : "Minimum of 6 characters";
+    errors.email = (/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) ? "" : "Email Format is xyz@xxx.xxx";
+    setErrorMessage({ ...errors });
 
-    return Object.values(temp).every(n => n === "");
+    return Object.values(errors).every(n => n === "");
   }
 
   const handleUsernameChange = (event) => {
