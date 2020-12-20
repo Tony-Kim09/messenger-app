@@ -1,17 +1,18 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
-import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import RegistrationForm from "../components/RegisterForm";
-import LoginRedirect from "../components/LoginRedirect";
 import registerService from "../services/register";
 import { Alert } from "@material-ui/lab";
+import useStyle from "../themes/loginAndRegister";
 
 const Register = () => {
     const [message, setMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     const history = useHistory();
+    const classes = useStyle();
 
     const createUser = (userObject) => {
      registerService.create(userObject)
@@ -30,21 +31,23 @@ const Register = () => {
     }
 
     return (
-        <Container maxWidth="xs">
+        <Grid container className={classes.root}>
             <CssBaseline />
-            {(message && 
-                <Alert severity="success">
-                    {message}    
-                </Alert>
-            )}
-            {(errorMessage && 
-                <Alert severity="error">
-                    {errorMessage}
-                </Alert>
-            )}
-            <LoginRedirect />
-            <RegistrationForm createUser={createUser} />            
-        </Container>
+            <Grid item xs={false} sm={4} md={7} className={classes.image} />
+            <Grid item xs={12} sm={8} md={5}>
+                {(message && 
+                    <Alert severity="success">
+                        {message}    
+                    </Alert>
+                )}
+                {(errorMessage && 
+                    <Alert severity="error">
+                        {errorMessage}
+                    </Alert>
+                )}
+                <RegistrationForm createUser={createUser} /> 
+            </Grid>
+        </Grid>
     );
 }
 

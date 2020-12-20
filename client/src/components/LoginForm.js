@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import loginRegisterStyles from "../themes/loginAndRegister";
+import RegisterRedirect from "../components/RegisterRedirect";
 
 //loginUser props will be the axios post call that will take user object created here as parameter
 const LoginForm = ({ loginUser }) => {
@@ -33,7 +34,8 @@ const LoginForm = ({ loginUser }) => {
 
   return (
     <div className={classes.paper}>
-      <Grid container alignContent="flex-start">
+      <RegisterRedirect />
+      <Grid container alignContent="flex-start" >
           <Typography component="h1" variant="h5">
               Welcome Back!
           </Typography>
@@ -61,6 +63,8 @@ const LoginForm = ({ loginUser }) => {
               onChange={handlePasswordChange}
               />
           </Grid>
+          <Grid>
+          </Grid>
           </Grid>
           <Grid container justify="center">
               <Grid item>
@@ -68,6 +72,7 @@ const LoginForm = ({ loginUser }) => {
                 type="submit"
                 variant="contained"
                 color="primary"
+                size="large"
                 className={classes.mainButton}
                 disableElevation
                 >

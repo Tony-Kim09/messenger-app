@@ -26,6 +26,7 @@ const RedirectToLogin = () => {
           type="button"
           variant="contained"
           color="secondary"
+          size="large"
           className={classes.secondaryButton}
           onClick={redirectButton}
         >
