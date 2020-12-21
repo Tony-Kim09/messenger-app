@@ -26,6 +26,7 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <BrowserRouter>
         <Switch>
+          <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/messenger">
             <Messenger changeUserState={setUser} />

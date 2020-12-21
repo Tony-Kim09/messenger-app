@@ -10,7 +10,7 @@ const RedirectToRegister = () => {
   const history = useHistory();
 
   const redirectButton = () => {
-    history.push("/");
+    history.push("/register");
   }
 
   return (

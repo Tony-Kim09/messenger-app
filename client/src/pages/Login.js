@@ -7,7 +7,7 @@ import loginService from "../services/login";
 import { Alert } from "@material-ui/lab";
 import useStyle from "../themes/loginAndRegister";
 
-const Register = () => {
+const Login = () => {
     const [message, setMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -53,4 +53,4 @@ const Register = () => {
     );
 }
 
-export default Register;
+export default Login;

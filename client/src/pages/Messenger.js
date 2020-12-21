@@ -9,7 +9,7 @@ const Messenger = ({ changeUserState }) => {
   const handleLogOut = (event) => {
     event.preventDefault();
     window.localStorage.removeItem("userAuthenticated");
-    history.push("/");
+    history.push("/register");
     changeUserState(null);
   }
 
