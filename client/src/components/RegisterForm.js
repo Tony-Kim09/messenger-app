@@ -5,6 +5,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import loginRegisterStyles from "../themes/loginAndRegister";
+import LoginRedirect from "../components/LoginRedirect";
 import { Alert } from "@material-ui/lab";
 
 //createUser props will be the axios post call that will take user object created here as parameter
@@ -71,8 +72,9 @@ const RegisterForm = ({ createUser }) => {
 
   return (
     <div className={classes.paper}>
+      <LoginRedirect/>
       <Grid container alignContent="flex-start">
-          <Typography className={classes.registrationHeader} component="h1" variant="h5">
+          <Typography component="h1" variant="h5">
               Create an account.
           </Typography>
       </Grid>
@@ -130,6 +132,7 @@ const RegisterForm = ({ createUser }) => {
                 type="submit"
                 variant="contained"
                 color="primary"
+                size="large"
                 className={classes.mainButton}
                 disableElevation
                 >

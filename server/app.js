@@ -15,7 +15,7 @@ const { tokenExtractorAndValidator, errorHandler, unknownEndpoint } = require(".
 
 const { json, urlencoded } = express;
 
-var app = express();
+const app = express();
 
 mongoose.connect(config.MONGODB_URL, { 
   useNewUrlParser: true, 
