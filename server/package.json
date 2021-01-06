@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon ./bin/www",
+    "dev": "nodemon server.js",
     "debug": "nodemon  --inspect ./bin/www",
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/mocha --exit --timeout 30000"
   },
@@ -18,7 +18,8 @@
     "mongo-sanitize": "^1.1.0",
     "mongoose": "^5.11.7",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "socket.io": "^3.0.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",
