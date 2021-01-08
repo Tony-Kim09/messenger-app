@@ -2,17 +2,23 @@ const mongoose = require('mongoose')
 
 //Rough Idea for Storing Messages for future purposes
 
-const messagesSchema = new mongoose.Schema({
-    user:{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+const conversationSchema = new mongoose.Schema({
+  //Will use Username as they are unique
+    participants:{
+      type: [{type: String}],
+      required: true
     },
-    recipient: String,
-    message: String,
-    date: new Date()
+    messages: [{
+      sender: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+      },
+      message: String,
+      date: new Date()
+    }]
   })
 
-  messagesSchema.set('toJSON', {
+conversationSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -20,4 +26,4 @@ const messagesSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Messages', messagesSchema)
+module.exports = mongoose.model('Messages', conversationSchema)

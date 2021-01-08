@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import Grid from "@material-ui/core/Grid";
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
-import useStyle from "../themes/messangerStyle";
+import useStyle from "../themes/messengerStyle";
 
 let socket;
 

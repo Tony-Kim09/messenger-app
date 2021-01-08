@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const messangerStyle = makeStyles((theme) => ({
+const messengerStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
   },
@@ -25,4 +25,4 @@ const messangerStyle = makeStyles((theme) => ({
   }
 }));
 
-export default messangerStyle;
+export default messengerStyle;
