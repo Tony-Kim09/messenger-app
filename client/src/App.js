@@ -29,7 +29,7 @@ const App = () => {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/messenger">
-            <Messenger changeUserState={setUser} />
+            <Messenger/>
           </Route>
           <Route path="/">
             {user ? <Redirect to="/messenger"/> : <Register />}
