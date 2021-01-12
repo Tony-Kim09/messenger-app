@@ -14,7 +14,10 @@ const conversationSchema = new mongoose.Schema({
         ref: "User"
       },
       message: String,
-      date: new Date()
+      createdOn: {
+        type: Date,
+        default: new Date("<YYYY-mm-ddTHH:MM:ss>")
+      }
     }]
   })
 
@@ -26,4 +29,6 @@ conversationSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Messages', conversationSchema)
+const Conversation = mongoose.model('Conversation', conversationSchema);
+
+module.exports = Conversation;

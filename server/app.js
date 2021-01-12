@@ -9,7 +9,9 @@ const config = require('./utils/config');
 const indexRouter = require("./routes/index");
 const pingRouter = require("./routes/ping");
 const registerRouter = require("./routes/register");
-const loginRouter = require("./routes/login")
+const loginRouter = require("./routes/login");
+const usersRouter = require("./routes/users");
+const conversationRouter = require("./routes/conversation");
 
 const { tokenExtractorAndValidator, errorHandler, unknownEndpoint } = require("./utils/middleware");
 
@@ -42,6 +44,8 @@ app.use("/", indexRouter);
 app.use("/ping", pingRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+app.use("/users", usersRouter);
+app.use("/messages", conversationRouter);
 
 // catch 404 and forward to error handler
 app.use(unknownEndpoint);
