@@ -1,0 +1,14 @@
+import axios from "axios"; 
+
+const baseUrl = "/users";
+
+const getUsers = async () => {
+  const response = await axios.get(baseUrl);
+  
+  return response.data;
+}
+
+const usersService = {
+  getUsers
+};
+export default usersService;
