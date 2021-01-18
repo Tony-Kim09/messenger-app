@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import io from "socket.io-client";
 import Grid from "@material-ui/core/Grid";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import useStyle from "../themes/messengerStyle";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import UserList from "../components/UserList";
+import UserPanel from "../components/UserPanel/UserPanel";
 import usersService from "../services/users";
 
 let socket;
@@ -74,7 +74,7 @@ const Messenger = () => {
     <Grid container direction="row" spacing={2} className={classes.root}>
       <CssBaseline />
       <Grid item xd={3}>
-      <UserList users={users} currentUser={currentUser}/>
+      <UserPanel users={users} currentUser={currentUser}/>
       </Grid>
       <Grid item xs={6}>
         <div className={classes.messageBox}> 

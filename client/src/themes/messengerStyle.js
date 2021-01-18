@@ -7,7 +7,7 @@ const messengerStyle = makeStyles((theme) => ({
     display: "flex",
     margin: theme.spacing(2, 2)
   },
-  userPanel: {
+  userList: {
     flexDirection: "column"
   },
   paper: {
