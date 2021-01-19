@@ -5,17 +5,21 @@ import User from "./User";
 import useStyles from "../../themes/messengerStyle";
 
 const UserList = ({users, filterUser}) => {
-
   const classes = useStyles();
+  const reduceUsers = (acc, cur) => {
+    if (cur.username.includes(filterUser)){
+      return [...acc, 
+        <Grid item key={cur.id}>
+         <User username={cur.username}/> 
+        </Grid>
+      ];
+    }
+    return acc;
+  }
 
   return (
      <Grid container direction="column" className={classes.userList}>
-       {users.filter(filter => filter.username.includes(filterUser))
-             .map(user => 
-          <Grid item key={user.id}>
-            <User username={user.username}/> 
-          </Grid>
-       )}
+       {users ? users.reduce(reduceUsers, []) : null}
      </Grid>
   )
 }

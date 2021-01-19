@@ -33,8 +33,8 @@ const Messenger = () => {
       setCurrentUser(userLoggedIn);
 
     //Set all current Users
-    usersService.getUsers()
-                .then( userList => setUsers(userList.filter(user => user.username !== userLoggedIn.username)));
+    usersService.getUsers({username: userLoggedIn.username})
+                .then( userList => setUsers(userList));
     } else {
       alert("You must be logged in");
       history.push("/login");

@@ -9,12 +9,10 @@ const UserPanel = ({users, currentUser}) => {
     setFilter(event.target.value);
   }
 
-  let otherUsers = users.filter(user => user.username !== currentUser.username);
-
   return (
     <div>
       <FilterInput name={filteredName} handler={handleFilter} />
-      <UserList users={otherUsers} filterUser={filteredName}/>
+      <UserList users={users} filterUser={filteredName}/>
     </div>
   );
 } 
