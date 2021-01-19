@@ -3,16 +3,20 @@ import { makeStyles } from "@material-ui/core/styles";
 const messengerStyle = makeStyles((theme) => ({
   root: {
     height: "100vh",
+    width: "100vh",
+    display: "flex",
+    margin: theme.spacing(2, 2)
+  },
+  userList: {
+    flexDirection: "column"
   },
   paper: {
     margin: theme.spacing(10, 8),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
   },
   messageBox: {
-    width: '100%',
-    height: '80vh'
+    height: "90vh"
   },
   chatInput:{
     display: "flex",
