@@ -12,12 +12,18 @@ const io = socketio(server);
 io.on("connection", (socket) => {
   console.log("user connected");
 
-  socket.on("sendMessage", (msg) => {
-    console.log("Message: ", msg);
-    io.emit("message", msg);
+  socket.on("join", (conversationInfo) => {
+
+    socket.join(conversationInfo.id);
+    socket.emit("message", { sender: "Admin", text: `You are now talking to ${conversationInfo.target}`});
+  })
+
+  socket.on("sendMessage", ({currentConversationID, msg}) => {
+    io.to(currentConversationID).emit("message", msg);
   });
 
   socket.on("disconnect", () => {
+
     console.log("user disconnected");
   });
 });

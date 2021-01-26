@@ -4,9 +4,10 @@ import Grid from "@material-ui/core/Grid";
 import Snackbar from '@material-ui/core/Snackbar';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import loginRegisterStyles from "../themes/loginAndRegister";
-import LoginRedirect from "../components/LoginRedirect";
 import { Alert } from "@material-ui/lab";
+
+import loginRegisterStyles from "../../themes/loginAndRegister";
+import LoginRedirect from "./LoginRedirect";
 
 //createUser props will be the axios post call that will take user object created here as parameter
 const RegisterForm = ({ createUser }) => {
