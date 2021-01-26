@@ -13,7 +13,7 @@ conversationRouter.post("/", async (request, response) => {
   const conversation = await Conversation.findOne( {participants: { $all: users }} );
 
   if (conversation) {
-    return response.status(200).json( { message: "Chat Already Exists!", conversation: conversation });
+    return response.status(200).json(conversation);
   } else {
     const newConversation = new Conversation({participants: users});
     const savedConversation = await newConversation.save();

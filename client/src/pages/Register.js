@@ -2,10 +2,11 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import RegistrationForm from "../components/RegisterForm";
-import registerService from "../services/register";
 import { Alert } from "@material-ui/lab";
 import useStyle from "../themes/loginAndRegister";
+
+import RegistrationForm from "../components/RegisterForm/RegisterForm";
+import registerService from "../services/register";
 
 const Register = () => {
     const [message, setMessage] = useState("");

@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import io from "socket.io-client";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import useStyle from "../themes/messengerStyle";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import ChatBox from "../components/ChatBox";
+import LogoutButton from "../components/LogoutButton";
 import UserPanel from "../components/UserPanel/UserPanel";
 import usersService from "../services/users";
+import messengerService from "../services/messenger";
 
 let socket;
 
@@ -16,9 +17,12 @@ const Messenger = () => {
   const history = useHistory();
   const classes = useStyle();
 
+  const [currentConversationID, setConversationID] = useState("");
+  const [existingChat, setExistingChat] = useState(false);
+
   const [currentUser, setCurrentUser] = useState(null);
   const [users, setUsers] = useState([]);
-  const [message, setMessage] = useState("");
+  const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
 
   const ENDPOINT = "localhost:3000"
@@ -41,6 +45,23 @@ const Messenger = () => {
     }
   }, [ENDPOINT]);
 
+  //Function for Starting Chat
+  const startConversation = async (target) => {
+    setMessages([]);
+    const participants = { usernames: [currentUser.username, target.username]};
+
+    const conversation = await messengerService.createConversation(participants)
+    setExistingChat(true);
+    setConversationID(conversation.id);
+
+    //Show old messages if available
+    if (conversation.messages){
+      setMessages(conversation.messages);
+    }
+    const conversationInfo = {user: currentUser.username, target: target.username, id: conversation.id};
+    socket.emit("join", conversationInfo);
+  }
+
   //Get real-time message
   useEffect(()=> {
     socket.on("message", message => {
@@ -51,64 +72,27 @@ const Messenger = () => {
   //Send user message to Server
   const sendMessage = (event) => {
     event.preventDefault();
-    const trimmedMessage = message.trim();
+    const trimmedText = text.trim();
+    const msg = { sender: currentUser.username, text: trimmedText };
 
-    if(trimmedMessage){
-      socket.emit("sendMessage", trimmedMessage, () => setMessage(""));
+    if(msg){
+      socket.emit("sendMessage", ({currentConversationID, msg}), () => setText(""));
     }
-    setMessage("");
-  }
-  
-  const handleLogOut = (event) => {
-    window.localStorage.removeItem("userAuthenticated");
-    history.push("/register");
-    setCurrentUser(null);
-  }
-
-  const handleMessage = (event) => {
-    event.preventDefault(); 
-    setMessage(event.target.value);
+    setText("");
   }
 
   return (
     <Grid container direction="row" spacing={2} className={classes.root}>
       <CssBaseline />
       <Grid item xd={3}>
-      <UserPanel users={users} currentUser={currentUser}/>
+      <UserPanel users={users} currentUser={currentUser} startConversation={startConversation} />
       </Grid>
       <Grid item xs={6}>
-        <div className={classes.messageBox}> 
-          {messages.map((message, i) => <div key={i}>{currentUser.name}: {message}</div>)}
-        </div>
-        <div>
-          <form autoComplete="off" className={classes.chatInput} onSubmit={sendMessage}>
-              <TextField
-                value={message}
-                fullWidth
-                autoFocus
-                onChange={handleMessage}/>
-              <Button
-              disabled={message.trim() === ""}
-              type="submit"
-              variant="contained"
-              color="primary"
-              size="large"
-              disableElevation
-              >
-              Send
-              </Button>
-          </form>
-        </div>
+        {existingChat ? <ChatBox messages={messages} text={text} setText={setText} sendMessage={sendMessage} />
+                      : null}
       </Grid>
       <Grid item xs={1}>
-        <Button
-          type="button"
-          variant="contained"
-          color="primary"
-          onClick={handleLogOut}
-        >
-        LogOut
-        </Button>
+        <LogoutButton setUser={setCurrentUser}/>
       </Grid>
     </Grid>
   );

@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import LoginForm from "../components/LoginForm";
-import loginService from "../services/login";
 import { Alert } from "@material-ui/lab";
+
+import LoginForm from "../components/LoginForm/LoginForm";
+import loginService from "../services/login";
 import useStyle from "../themes/loginAndRegister";
 
 const Login = () => {

@@ -3,8 +3,9 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import loginRegisterStyles from "../themes/loginAndRegister";
-import RegisterRedirect from "../components/RegisterRedirect";
+
+import loginRegisterStyles from "../../themes/loginAndRegister";
+import RegisterRedirect from "./RegisterRedirect";
 
 //loginUser props will be the axios post call that will take user object created here as parameter
 const LoginForm = ({ loginUser }) => {
