@@ -7,7 +7,6 @@ import useStyles from "../../themes/messengerStyle";
 const UserList = ({users, filterUser, startConversation}) => {
   const classes = useStyles();
 
-
   const reduceUsers = (acc, cur) => {
     if (cur.username.includes(filterUser)){
       return [...acc, 
