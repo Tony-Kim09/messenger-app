@@ -1,13 +1,11 @@
 const express = require("express");
-require('express-async-errors')
-const { join } = require("path");
+require("express-async-errors")
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const config = require('./utils/config');
+const cors = require("cors")
 
-const indexRouter = require("./routes/index");
-const pingRouter = require("./routes/ping");
 const registerRouter = require("./routes/register");
 const loginRouter = require("./routes/login");
 const usersRouter = require("./routes/users");
@@ -36,12 +34,10 @@ app.use(logger("dev"));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(join(__dirname, "public")));
-
+app.use(express.static('build'))
 app.use(tokenExtractorAndValidator);
+app.use(cors())
 
-app.use("/", indexRouter);
-app.use("/ping", pingRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/users", usersRouter);
