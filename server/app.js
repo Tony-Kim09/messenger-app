@@ -30,13 +30,13 @@ mongoose.connect(config.MONGODB_URL, {
           console.log("There was an error connecting to MongoDB: ", error.message);
         })
 
+app.use(cors())
+app.use(express.static('build'))
 app.use(logger("dev"));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static('build'))
 app.use(tokenExtractorAndValidator);
-app.use(cors())
 
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);

@@ -40,7 +40,13 @@ const loginRegisterStyles = makeStyles((theme) => ({
     loginRedirectText: {
       marginTop: theme.spacing(2),
       color: "lightgrey"
+    },
+    backgroundImageText: {
+      color: "white",
+      marginLeft: "20%",
+      marginRight: "20%",
     }
+
 }));
 
 export default loginRegisterStyles;

@@ -30,7 +30,7 @@ loginRouter.post("/", async (request, response) => {
 
     //Use the SECRET in .env to sign the token that expires in 7 days
     const token = jwt.sign(userToken, process.env.SECRET, { expiresIn: "7d" });
-
+    console.log("can successfully log in")
     response
         .status(200)
         .send({ token, username: user.username, name: user.name});

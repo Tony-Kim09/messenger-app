@@ -25,11 +25,10 @@ const Messenger = () => {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const ENDPOINT = "localhost:3000"
 
   //Initialize SocketIO and users
   useEffect(()=> {
-    socket = io(ENDPOINT);
+    socket = io();
     const loggedUserJSON = window.localStorage.getItem("userAuthenticated");
     if (loggedUserJSON) {
     // Set Current User 
@@ -43,7 +42,7 @@ const Messenger = () => {
       alert("You must be logged in");
       history.push("/login");
     }
-  }, [ENDPOINT]);
+  }, [history]);
 
   //Function for Starting Chat
   const startConversation = async (target) => {

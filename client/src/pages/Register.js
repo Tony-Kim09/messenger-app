@@ -7,6 +7,7 @@ import useStyle from "../themes/loginAndRegister";
 
 import RegistrationForm from "../components/RegisterForm/RegisterForm";
 import registerService from "../services/register";
+import { Typography } from "@material-ui/core";
 
 const Register = () => {
     const [message, setMessage] = useState("");
@@ -34,7 +35,8 @@ const Register = () => {
     return (
         <Grid container className={classes.root}>
             <CssBaseline />
-            <Grid item xs={false} sm={4} md={7} className={classes.image} />
+            <Grid item xs={false} sm={4} md={7} className={classes.image}>
+            </Grid>
             <Grid item xs={12} sm={8} md={5}>
                 {(message && 
                     <Alert severity="success">

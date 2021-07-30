@@ -17,7 +17,7 @@ conversationRouter.post("/", async (request, response) => {
   } else {
     const newConversation = new Conversation({participants: users});
     const savedConversation = await newConversation.save();
-
+    
     response.status(201).json(savedConversation);
   }
 })
@@ -29,8 +29,17 @@ conversationRouter.get("/:id", async (request, response) => {
   if (!conversation){
     return response.status(400).json( { error: "conversation does not exist"});
   }
-  console.log(request.params);
   response.status(200).json({ message: request.params });
 })
 
+//Save messages to conversation using id
+conversationRouter.post("/:id", async (request, response) => {
+  const conversation = Conversation.findById(request.params);
+
+  if (!conversation){
+    return response.status(400).json( { error: "conversation does not exist"});
+  }
+  
+  const messages = { message: response.body.messages }
+})
 module.exports = conversationRouter;
