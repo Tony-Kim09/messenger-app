@@ -2,13 +2,9 @@
 
 https://tk-messanger-app.herokuapp.com/
 
-# Express Starter
+# Messanger Application
 
-This starter repo will be used for building applications using React, Material-UI, React-Router, Node, & Express.js.
-
-## Getting started
-
-The project is broken down into a client and server folder.
+This application will be using React, Material-UI, React-Router, Node, & Express.js.
 
 ## Setting up .env file
 
