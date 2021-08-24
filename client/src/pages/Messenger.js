@@ -3,13 +3,13 @@ import { useHistory } from "react-router-dom";
 import io from "socket.io-client";
 import Grid from "@material-ui/core/Grid";
 import useStyle from "../themes/messengerStyle";
-import CssBaseline from "@material-ui/core/CssBaseline";
-
 import ChatBox from "../components/ChatBox";
 import LogoutButton from "../components/LogoutButton";
 import UserPanel from "../components/UserPanel/UserPanel";
 import usersService from "../services/users";
 import messengerService from "../services/messenger";
+import CurrentUserBox from "../components/UserPanel/CurrentUserBox";
+import { Box, Drawer } from "@material-ui/core";
 
 let socket;
 
@@ -24,7 +24,6 @@ const Messenger = () => {
   const [users, setUsers] = useState([]);
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
-
 
   //Initialize SocketIO and users
   useEffect(()=> {
@@ -81,19 +80,22 @@ const Messenger = () => {
   }
 
   return (
-    <Grid container direction="row" spacing={2} className={classes.root}>
-      <CssBaseline />
-      <Grid item xd={3}>
-      <UserPanel users={users} currentUser={currentUser} startConversation={startConversation} />
-      </Grid>
-      <Grid item xs={6}>
-        {existingChat ? <ChatBox messages={messages} text={text} setText={setText} sendMessage={sendMessage} />
-                      : null}
-      </Grid>
-      <Grid item xs={1}>
+    <div className={classes.root}>
+      <nav className={classes.drawer}>
+        <Drawer
+          variant="permanent"
+          anchor="left"
+          classes={{paper: classes.drawerPaper}}>
+          <CurrentUserBox currentUser={currentUser}/>
+          <UserPanel users={users} currentUser={currentUser} startConversation={startConversation} />
+        </Drawer>
+      </nav>
+      <div borderTop={1} className={classes.contentRight}>
         <LogoutButton setUser={setCurrentUser}/>
-      </Grid>
-    </Grid>
+            {existingChat ? <ChatBox messages={messages} text={text} setText={setText} sendMessage={sendMessage} />
+                              : null}
+      </div>
+    </div>
   );
 }
 

@@ -31,7 +31,7 @@ mongoose.connect(config.MONGODB_URL, {
         })
 
 app.use(cors())
-app.use(express.static('build'))
+// app.use(express.static('build'))
 app.use(logger("dev"));
 app.use(json());
 app.use(urlencoded({ extended: false }));

@@ -75,11 +75,10 @@ const RegisterForm = ({ createUser }) => {
     <div className={classes.paper}>
       <LoginRedirect/>
       <Grid container alignContent="flex-start">
-          <Typography component="h1" variant="h5">
-              Create an account.
+          <Typography component="h1" variant="h4">
+              <b>Create an account</b>
           </Typography>
       </Grid>
-      <div>
       <form className={classes.form} onSubmit={registerUser}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -137,12 +136,13 @@ const RegisterForm = ({ createUser }) => {
                 className={classes.mainButton}
                 disableElevation
                 >
-                Create
+                  <b>
+                    Create
+                  </b>
                 </Button>
             </Grid>
         </Grid>
       </form>
-      </div>
       <div>
         <Snackbar anchorOrigin={{ vertical: "top", horizontal: "right"}} open = {showSnackbar} autoHideDuration={3000} onClose={handleCloseSnack}>
           <Alert onClose={handleCloseSnack} severity="error">
