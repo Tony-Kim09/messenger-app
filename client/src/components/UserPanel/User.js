@@ -1,16 +1,23 @@
 import React from "react";
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-
-import Typography from "@material-ui/core/Typography";
+import CardHeader from "@material-ui/core/CardHeader";
+import Avatar from "@material-ui/core/Avatar";
+import useStyle from "../../themes/messengerStyle"
 
 const User = ({username}) => {
 
+  const classes = useStyle();
+  
   return (
-    <Card>
-      <CardContent>
-        <Typography>{username}</Typography>
-      </CardContent>
+    <Card className={classes.userListItem}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="users">
+            {username.substring(0, 1)}
+          </Avatar>
+        }  
+        title={<b>{username}</b>}
+      />
     </Card>
   )
 }

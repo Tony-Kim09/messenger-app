@@ -2,6 +2,7 @@ import React from "react";
 import useStyle from "../themes/messengerStyle";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { Paper } from "@material-ui/core";
 
 const ChatBox = ({messages, text, setText, sendMessage}) => {
   const classes = useStyle();
@@ -12,7 +13,7 @@ const ChatBox = ({messages, text, setText, sendMessage}) => {
   }
 
   return (
-    <div>
+    <Paper>
       <div className={classes.messageBox}> 
         {messages.map((message, i) => <div key={i}><b>{message.sender}:</b> {message.text}</div>)}
       </div>
@@ -20,6 +21,7 @@ const ChatBox = ({messages, text, setText, sendMessage}) => {
         <form autoComplete="off" className={classes.chatInput} onSubmit={sendMessage}>
             <TextField
               value={text}
+              variant="outlined"
               fullWidth
               autoFocus
               onChange={handleText}
@@ -37,7 +39,7 @@ const ChatBox = ({messages, text, setText, sendMessage}) => {
             </Button>
         </form>
       </div>
-    </div>
+    </Paper>
   );
 }
 

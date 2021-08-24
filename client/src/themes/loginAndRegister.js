@@ -7,7 +7,9 @@ const loginRegisterStyles = makeStyles((theme) => ({
       height: "100vh",
     },
     paper: {
-      margin: theme.spacing(10, 8),
+      marginTop: "15%",
+      marginLeft: "15%",
+      marginRight: "15%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -17,14 +19,14 @@ const loginRegisterStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(3),
     },
     image: {
-      backgroundImage: `url(${bgImage})`,
+      background: `linear-gradient(180deg, rgba(58, 141, 255, 0.85), rgba(134, 185, 255, 0.85)), url(${bgImage})`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
-      backgroundPosition: "center",
+      backgroundPosition: "center"
     },
     mainButton: {
-      margin: theme.spacing(3, 0, 2),
-      padding: theme.spacing(1, 3),
+      margin: theme.spacing(7, 0, 2),
+      padding: theme.spacing(1, 3)
     },
     secondaryButton: {
       margin: theme.spacing(1, 0, 0),
@@ -42,9 +44,7 @@ const loginRegisterStyles = makeStyles((theme) => ({
       color: "lightgrey"
     },
     backgroundImageText: {
-      color: "white",
-      marginLeft: "20%",
-      marginRight: "20%",
+      padding: theme.spacing(0, "15%")
     }
 
 }));

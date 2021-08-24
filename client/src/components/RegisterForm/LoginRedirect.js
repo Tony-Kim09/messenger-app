@@ -30,7 +30,7 @@ const RedirectToLogin = () => {
           className={classes.secondaryButton}
           onClick={redirectButton}
         >
-          Login
+          <b>Login</b>
         </Button>
         </Grid>
       </Grid>

@@ -37,11 +37,10 @@ const LoginForm = ({ loginUser }) => {
     <div className={classes.paper}>
       <RegisterRedirect />
       <Grid container alignContent="flex-start" >
-          <Typography component="h1" variant="h5">
-              Welcome Back!
+          <Typography component="h1" variant="h4" fontWeight="fontWeightBold">
+              <b>Welcome Back!</b>
           </Typography>
       </Grid>
-      <div>
       <form className={classes.form} onSubmit={submitUser}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -64,25 +63,22 @@ const LoginForm = ({ loginUser }) => {
               onChange={handlePasswordChange}
               />
           </Grid>
-          <Grid>
+        </Grid>
+        <Grid container justify="center">
+            <Grid item>
+              <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.mainButton}
+              disableElevation
+              >
+              <b>Login</b>
+              </Button>
           </Grid>
-          </Grid>
-          <Grid container justify="center">
-              <Grid item>
-                <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                size="large"
-                className={classes.mainButton}
-                disableElevation
-                >
-                Login
-                </Button>
-            </Grid>
         </Grid>
       </form>
-      </div>
     </div>
   );
 }

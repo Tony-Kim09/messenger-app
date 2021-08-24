@@ -30,7 +30,7 @@ const RedirectToRegister = () => {
               className={classes.secondaryButton}
               onClick={redirectButton}
               >
-              Create
+              <b>Create</b>
           </Button>
         </Grid>
       </Grid>
