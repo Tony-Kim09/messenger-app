@@ -1,14 +1,13 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { fade } from "@material-ui/core";
 
-const DRAWER_WIDTH = 280;
+const DRAWER_WIDTH = 400;
 
 const messengerStyle = makeStyles((theme) => ({
   root: {
     display: "flex"
   },
-  userListItem: {
-    width: "100%"
-  },
+
   messageBox: {
     height: "85vh"
   },
@@ -26,14 +25,23 @@ const messengerStyle = makeStyles((theme) => ({
     flexShrink: 0
   },
   drawerPaper: {
-    width: DRAWER_WIDTH
+    width: DRAWER_WIDTH,
+    overflowX: "hidden",
+  },
+  chatHeaderText: {
+    margin: theme.spacing (0, 2, 2, 2)
   },
   searchBarContainer: {
-    margin: theme.spacing (0, 2, 2, 2)
+    width: DRAWER_WIDTH,
+    margin: theme.spacing (0, 2, 2, 2),
+    backgroundColor: fade(theme.palette.primary.light, 0.25),
   },
   contentRight: {
     flexGrow: 1,
     padding: theme.spacing(3)
+  },
+  currentUserAvatarColor: {
+    background: `linear-gradient(180deg, rgba(58, 141, 255, 0.85), rgba(134, 185, 255, 0.85))`
   }
 }));
 

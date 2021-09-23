@@ -5,7 +5,7 @@ import { List, ListItem } from "@material-ui/core";
 const UserList = ({users, filterUser, startConversation}) => {
 
   const reduceUsers = (acc, cur) => {
-    if (cur.username.includes(filterUser)){
+    if (cur.username.toLowerCase().includes(filterUser.toLowerCase())){
       return [...acc, 
         <ListItem key={cur.id} onClick={() => startConversation(cur)}>
          <User username={cur.username}/>

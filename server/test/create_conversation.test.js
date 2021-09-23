@@ -13,20 +13,20 @@ Refer to README for more information */
 
 const users = {
     usernames: ["john", "doe"]
-};
+};;
 
 const existingConversation = {
   usernames: ["tommy", "clara"]
-}
+};
 
 const notEnoughParticipants = {
     usernames: ["tom"]
-}
+};
 before(async () => {
     await Conversation.deleteMany({})
     const existingConvo = new Conversation({participants: ["tommy", "clara"]});
     await existingConvo.save();
-})
+});
 
 describe("/POST messages", () => {
 
@@ -71,4 +71,4 @@ describe("/POST messages", () => {
 
 after(() => {
     mongoose.connection.close()
-})
+});

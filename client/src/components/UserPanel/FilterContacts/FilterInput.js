@@ -1,27 +1,31 @@
 import React from "react"
-import TextField from "@material-ui/core/TextField";
-import { InputAdornment, makeStyles, Typography } from "@material-ui/core";
+import {  IconButton, InputBase, Paper } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
-import useStyles from "../../../themes/messengerStyle"
 
 const Filter = ({name, handler}) => {
-    const classes = useStyles();
 
     return (
-        <div className={classes.searchBarContainer}>
-          <Typography variant="h4" style={{marginBottom: 10}} >Chats</Typography>
-          <TextField label="Search" variant="filled" value={name} onChange={handler} color="primary"
-          style={{
-            background: "rgba(122, 188, 255, 0.3)"
-          }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon/>
-              </InputAdornment>
-            ),
-            }}/>
-        </div>
+      <Paper
+        style={{
+          background: `rgba(163, 198, 255, 0.3)`,
+          height: 65,
+          width: 350,
+          display: 'flex', alignItems: 'center',
+          marginLeft: "16px"
+        }}
+        sx={{ height: 300 }}
+        elevation = {0}
+      >
+        <IconButton sx={{ p: '10px' }} aria-label="search" disabled="true">
+          <SearchIcon />
+        </IconButton>
+        <InputBase
+          placeholder="Search"
+          inputProps={{ 'aria-label': 'Search' }}
+          value={name}
+          onChange={handler}
+        />
+      </Paper>
     )
   }
 
