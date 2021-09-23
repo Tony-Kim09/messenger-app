@@ -2,7 +2,7 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 const app = require("../app.js");
 const User = require("../models/user");
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 chai.should();
 chai.use(chaiHttp);
@@ -23,10 +23,10 @@ const passwordTooShort = {
     name: "bob",
     password: "1",
     email: "testing@mocha.chai"
-}
+};
 before(async () => {
     await User.deleteMany({})
-})
+});
 
 describe("/POST register", () => {
 
@@ -61,4 +61,4 @@ describe("/POST register", () => {
 
 after(() => {
     mongoose.connection.close()
-})
+});

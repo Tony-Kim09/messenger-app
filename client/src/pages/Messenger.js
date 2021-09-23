@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import io from "socket.io-client";
-import Grid from "@material-ui/core/Grid";
 import useStyle from "../themes/messengerStyle";
 import ChatBox from "../components/ChatBox";
 import LogoutButton from "../components/LogoutButton";
@@ -9,7 +8,7 @@ import UserPanel from "../components/UserPanel/UserPanel";
 import usersService from "../services/users";
 import messengerService from "../services/messenger";
 import CurrentUserBox from "../components/UserPanel/CurrentUserBox";
-import { Box, Drawer } from "@material-ui/core";
+import { CssBaseline, Drawer } from "@material-ui/core";
 
 let socket;
 
@@ -81,7 +80,8 @@ const Messenger = () => {
 
   return (
     <div className={classes.root}>
-      <nav className={classes.drawer}>
+      <CssBaseline/>
+      <div className={classes.drawer}>
         <Drawer
           variant="permanent"
           anchor="left"
@@ -89,8 +89,8 @@ const Messenger = () => {
           <CurrentUserBox currentUser={currentUser}/>
           <UserPanel users={users} currentUser={currentUser} startConversation={startConversation} />
         </Drawer>
-      </nav>
-      <div borderTop={1} className={classes.contentRight}>
+      </div>
+      <div bordertop={1} className={classes.contentRight}>
         <LogoutButton setUser={setCurrentUser}/>
             {existingChat ? <ChatBox messages={messages} text={text} setText={setText} sendMessage={sendMessage} />
                               : null}

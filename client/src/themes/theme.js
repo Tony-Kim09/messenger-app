@@ -3,8 +3,7 @@ import { createMuiTheme } from "@material-ui/core";
 export const theme = createMuiTheme({
   typography: {
     fontFamily: "Open Sans",
-    fontSize: 16,
-
+    fontSize: 18,
   },
   palette: {
     primary: { main: "#1976d2" },

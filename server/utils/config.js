@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 let MONGODB_URL = process.env.MONGODB_URL;
 
