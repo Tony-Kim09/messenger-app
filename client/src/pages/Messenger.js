@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import io from "socket.io-client";
 import useStyle from "../themes/messengerStyle";
 import ChatBox from "../components/ChatBox";
-import LogoutButton from "../components/LogoutButton";
 import UserPanel from "../components/UserPanel/UserPanel";
 import usersService from "../services/users";
 import messengerService from "../services/messenger";
@@ -86,14 +85,13 @@ const Messenger = () => {
           variant="permanent"
           anchor="left"
           classes={{paper: classes.drawerPaper}}>
-          <CurrentUserBox currentUser={currentUser}/>
+          <CurrentUserBox currentUser={currentUser} setUser={setCurrentUser}/>
           <UserPanel users={users} currentUser={currentUser} startConversation={startConversation} />
         </Drawer>
       </div>
       <div bordertop={1} className={classes.contentRight}>
-        <LogoutButton setUser={setCurrentUser}/>
-            {existingChat ? <ChatBox messages={messages} text={text} setText={setText} sendMessage={sendMessage} />
-                              : null}
+        {existingChat ? <ChatBox messages={messages} text={text} setText={setText} sendMessage={sendMessage} />
+                          : null}
       </div>
     </div>
   );

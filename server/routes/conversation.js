@@ -24,7 +24,7 @@ conversationRouter.post("/", async (request, response) => {
 
 //Get conversation using its id
 conversationRouter.get("/:id", async (request, response) => {
-  const conversation = Conversation.findById(request.params);
+  const conversation = await Conversation.findById(request.params);
 
   if (!conversation){
     return response.status(400).json( { error: "conversation does not exist"});
@@ -34,12 +34,19 @@ conversationRouter.get("/:id", async (request, response) => {
 
 //Save messages to conversation using id
 conversationRouter.post("/:id", async (request, response) => {
-  const conversation = Conversation.findById(request.params);
+  const conversation = await Conversation.findById(request.params);
 
   if (!conversation){
     return response.status(400).json( { error: "conversation does not exist"});
   }
   
-  const messages = { message: response.body.messages }
+  const messages = { message: response.body.messages };
+
+  conversation.messages = conversation.messages.concat(messages);
+  
+  await conversation.save();
+
+  return response.status(200).json({ message: "Message Saved" });
+
 })
 module.exports = conversationRouter;

@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const User = ({username}) => {
 
+  //Randomize Avatar Color based on Usernames
   const stringToHslColor = (str, saturation, lightness) => {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {

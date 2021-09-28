@@ -1,19 +1,20 @@
-import { Avatar, Box, Button, Typography } from "@material-ui/core";
+import { Avatar, Box, Typography } from "@material-ui/core";
 import React from "react";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import useStyles from '../../themes/messengerStyle'
+import AccountMenu from "../AccountMenu";
 
-const CurrentUserBox = ({currentUser}) => {
+const CurrentUserBox = ({currentUser, setUser}) => {
   const classes = useStyles();
 
   return (
-    <Box display="flex" alignItems="center"  flexDirection="row" style={{width: "100%", margin: 20,}}>
+    <Box display="flex" alignItems="center" flexDirection="row" style={{width: "100%", margin: 20,}}>
       <Avatar className={classes.currentUserAvatarColor} 
-          style={{width:"60px", height:"60px", marginLeft: 5 , marginRight: 10}}/>
-      <Typography >
+          style={{width:"60px", height:"60px", marginLeft: 5 , marginRight: 24}}/>
+      <Typography style={{marginRight:6}} >
         <b>{currentUser ? currentUser.username: "None"}</b>
       </Typography>
-      <Button size="small" startIcon={<MoreHorizIcon/>}/>
+      <AccountMenu size="small" startIcon={<MoreHorizIcon/>} setUser={setUser}/>
     </Box>
   )
 };
