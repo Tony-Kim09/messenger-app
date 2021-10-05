@@ -44,9 +44,6 @@ const RegisterForm = ({ createUser }) => {
     setEmail(event.target.value);
   }
   const handleCloseSnack = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
     setShowSnackBar(false);
   };
 
@@ -85,6 +82,7 @@ const RegisterForm = ({ createUser }) => {
               <TextField
               value={username}
               label="Username"
+              id="username"
               required
               fullWidth
               autoFocus
@@ -97,6 +95,7 @@ const RegisterForm = ({ createUser }) => {
               <TextField
               value={nickName}
               label="Name"
+              id="name"
               required
               fullWidth
               onChange={handleNickNameChange}
@@ -106,6 +105,7 @@ const RegisterForm = ({ createUser }) => {
               <TextField
               value={email}
               label="E-mail Address"
+              id="email"
               required
               fullWidth
               onChange={handleEmailChange}
@@ -118,6 +118,7 @@ const RegisterForm = ({ createUser }) => {
               value={password}
               type="password"
               label="Password"
+              id="password"
               required
               fullWidth
               onChange={handlePasswordChange}
@@ -125,21 +126,22 @@ const RegisterForm = ({ createUser }) => {
               helperText={errorMessage.password? errorMessage.password : ""}
               />
           </Grid>
-          </Grid>
-          <Grid container justify="center">
-              <Grid item>
-                <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                size="large"
-                className={classes.mainButton}
-                disableElevation
-                >
-                  <b>
-                    Create
-                  </b>
-                </Button>
+        </Grid>
+        <Grid container justify="center">
+            <Grid item>
+              <Button
+              id="create-button"
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.mainButton}
+              disableElevation
+              >
+                <b>
+                  Create
+                </b>
+              </Button>
             </Grid>
         </Grid>
       </form>

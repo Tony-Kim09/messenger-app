@@ -46,6 +46,7 @@ const LoginForm = ({ loginUser }) => {
           <Grid item xs={12}>
               <TextField
               value={email}
+              id="email"
               label="E-mail"
               required
               fullWidth
@@ -56,6 +57,7 @@ const LoginForm = ({ loginUser }) => {
           <Grid item xs={12}>
               <TextField
               value={password}
+              id="password"
               type="password"
               label="Password"
               required
@@ -68,6 +70,7 @@ const LoginForm = ({ loginUser }) => {
             <Grid item>
               <Button
               type="submit"
+              id="login-button"
               variant="contained"
               color="primary"
               size="large"
