@@ -53,6 +53,7 @@ const AccountMenu = ({setUser}) => {
       <div>
         <Button
           ref={anchorRef}
+          id="show-account-setting"
           onClick={handleToggle}
           size="large" 
           startIcon={<MoreHorizIcon/>}
@@ -79,7 +80,7 @@ const AccountMenu = ({setUser}) => {
                     autoFocusItem={open}
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleLogOut}>Logout</MenuItem>
+                    <MenuItem id="logout-button" onClick={handleLogOut}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

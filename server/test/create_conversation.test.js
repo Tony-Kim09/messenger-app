@@ -41,19 +41,6 @@ describe("/POST messages", () => {
             done();
         });
     });
-    it("Conversation Exists", done => {
-      chai
-      .request(app)
-      .post(`/messages/`)
-      .send(existingConversation)
-      .end((err, response) => {
-          response.should.have.status(200);
-          response.body.should.have
-          .property("message")
-          .eql("Chat Already Exists!");
-          done();
-      });
-  });
     it("Not Enough Participants", done => {
     chai
         .request(app)

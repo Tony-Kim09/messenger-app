@@ -23,6 +23,7 @@ const RedirectToLogin = () => {
         </Grid>
         <Grid item>
         <Button
+          id="change-to-login-button"
           type="button"
           variant="contained"
           color="secondary"

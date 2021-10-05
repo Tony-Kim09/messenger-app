@@ -30,8 +30,8 @@ mongoose.connect(config.MONGODB_URL, {
           console.log("There was an error connecting to MongoDB: ", error.message);
         })
 
-app.use(cors())
-app.use(express.static('build'))
+app.use(cors());
+app.use(express.static('build'));
 app.use(logger("dev"));
 app.use(json());
 app.use(urlencoded({ extended: false }));
@@ -42,6 +42,12 @@ app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/users", usersRouter);
 app.use("/messages", conversationRouter);
+
+//For Testing Purposes Only
+if (process.env.NODE_ENV === "test"){
+  const testingRouter = require("./routes/testing");
+  app.use("/testing", testingRouter);
+}
 
 // catch 404 and forward to error handler
 app.use(unknownEndpoint);

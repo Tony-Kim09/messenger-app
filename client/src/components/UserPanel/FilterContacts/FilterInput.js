@@ -21,6 +21,7 @@ const Filter = ({name, handler}) => {
         </IconButton>
         <InputBase
           placeholder="Search"
+          id="search-bar"
           inputProps={{ 'aria-label': 'Search' }}
           value={name}
           onChange={handler}
