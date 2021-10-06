@@ -33,6 +33,30 @@ describe("Login Page", function() {
         password: "Monica123",
         email: "Monica@test.test"
       },
+      {
+        username: "Ross",
+        name: "Ross",
+        password: "Ross123",
+        email: "Ross@test.test"
+      },
+      {
+        username: "Thomas",
+        name: "Thomas",
+        password: "Thomas123",
+        email: "Thomas@test.test"
+      },
+      {
+        username: "Clara",
+        name: "Clara",
+        password: "Clara123",
+        email: "Clara@test.test"
+      },
+      {
+        username: "Tiffany",
+        name: "Tiffany",
+        password: "Tiffany123",
+        email: "Tiffany@test.test"
+      },
   ];
     users.forEach(user => {
       cy.request("POST", "http://localhost:3001/register", user);

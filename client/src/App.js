@@ -8,8 +8,6 @@ import Login from "./pages/Login";
 import Messenger from "./pages/Messenger";
 import messengerService from "./services/messenger";
 
-import "./App.css";
-
 const App = () => {
   const [user, setUser] = useState(null);
 

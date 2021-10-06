@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Paper } from "@material-ui/core";
 
-const ChatBox = ({messages, text, setText, sendMessage}) => {
+const ChatBox = ({currentUser, messages, text, setText, sendMessage}) => {
   const classes = useStyle();
   
   const handleText = (event) => {
@@ -15,7 +15,19 @@ const ChatBox = ({messages, text, setText, sendMessage}) => {
   return (
     <Paper>
       <div className={classes.messageBox}> 
-        {messages.map((message, i) => <div key={i}><b>{message.sender}:</b> {message.text}</div>)}
+        {messages.map((message, i) => 
+          currentUser.username == message.sender ?
+          <div key={i} className={classes.sendingMessageContainer}>
+              <div className={classes.sentMessageBackground}>              
+                <b>{message.sender}:</b> {message.text}
+              </div>
+          </div> : 
+          <div key={i} className={classes.receivingMessageContainer}>
+              <div className={classes.receivedMessageBackground}>              
+                <b>{message.sender}:</b> {message.text}
+              </div>
+          </div>
+        )}
       </div>
       <div>
         <form autoComplete="off" className={classes.chatInput} onSubmit={sendMessage}>

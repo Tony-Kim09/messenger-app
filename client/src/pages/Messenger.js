@@ -7,7 +7,8 @@ import UserPanel from "../components/UserPanel/UserPanel";
 import usersService from "../services/users";
 import messengerService from "../services/messenger";
 import CurrentUserBox from "../components/UserPanel/CurrentUserBox";
-import { CssBaseline, Drawer } from "@material-ui/core";
+import { CssBaseline, Drawer, Grid } from "@material-ui/core";
+import { Box } from "@mui/system";
 
 let socket;
 
@@ -79,19 +80,22 @@ const Messenger = () => {
 
   return (
     <div className={classes.root}>
-      <CssBaseline/>
       <div className={classes.drawer}>
         <Drawer
           variant="permanent"
           anchor="left"
           classes={{paper: classes.drawerPaper}}>
           <CurrentUserBox currentUser={currentUser} setUser={setCurrentUser}/>
-          <UserPanel users={users} currentUser={currentUser} startConversation={startConversation} />
+          <UserPanel className={classes.userListContainer} users={users} currentUser={currentUser} startConversation={startConversation} />
         </Drawer>
       </div>
       <div bordertop={1} className={classes.contentRight}>
-        {existingChat ? <ChatBox messages={messages} text={text} setText={setText} sendMessage={sendMessage} />
-                          : null}
+        {existingChat ? 
+            <ChatBox currentUser={currentUser} messages={messages} text={text} setText={setText} sendMessage={sendMessage} />
+            : 
+            <Box>
+              
+            </Box>}
       </div>
     </div>
   );

@@ -23,6 +23,7 @@ const User = ({username}) => {
   const userCardStyle = makeStyles(() => ({
     userListItem: {
       width: "100%",
+      cursor: "pointer"
     },
     avatarColor: {
       background: `${avatarBGColor}`,
