@@ -9,7 +9,7 @@ For database, I used MongoDB Atlas for cloud storage.
 
 ![Register Page](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/MessengerRegisterPage.PNG)
 
-New users can register using this simple and intuitive landing page. Validations are used to ensure users are using proper lengths for username or password as well as email format. If any of these values are invalid, a simple error message with helper texts will show, helping users fill in the values correctly. 
+New users can register using this simple and intuitive register page. Validations are used to ensure the values are valid, such as minimum length for password or proper email format. If any of these values are invalid, an error message with helper texts will appear, assisting users to fill in the values correctly. 
 
 ![Invalid Input](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/InvalidInput.PNG)
 
