@@ -4,7 +4,26 @@ https://tk-messanger-app.herokuapp.com/
 
 # Messanger Application
 
-This application will be using React, Material-UI, React-Router, Node, & Express.js.
+This is a fullstack application built using React with MaterialUI for Frontend and Node.js/Express for Backend. 
+For database, I used MongoDB Atlas for cloud storage. 
+
+![Register Page](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/MessengerRegisterPage.PNG)
+
+New users can register using this simple and intuitive landing page. Validations are used to ensure users are using proper lengths for username or password as well as email format. If any of these values are invalid, a simple error message with helper texts will show, helping users fill in the values correctly. 
+
+![Invalid Input](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/InvalidInput.PNG)
+
+After logging in, users can click on any existing users on the left hand side to begin chatting with them. To test it out, I recommend opening two separate browsers for the real time chatting experience. 
+
+![Chat Page](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/MessengerChatPage.PNG)
+
+I have thoroughly tested the backend to ensure the APIs are properly functioning using Mocha/Chai.
+
+![BackEnd Test](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/backendUnitTest.PNG)
+
+Finally, I have also integrated End to End testing using Cypress to make sure the front-end can properly communicate with the back-end.
+
+![E2E Test](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/messengerCypress.PNG)
 
 ## Setting up .env file
 
@@ -18,8 +37,9 @@ MONGODB_URL="mylocaldatabase.example"
 PORT=3001
 SECRET="hatchways"
 
-## Connecting to the Database Server
+## Starting the application
 
+Choose the server directory in the terminal. 
 Install required packages by running "npm install".
 Then simply run command "npm run dev"
 
