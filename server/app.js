@@ -17,18 +17,18 @@ const { json, urlencoded } = express;
 
 const app = express();
 
-mongoose.connect(config.MONGODB_URL, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true, 
-  useFindAndModify: false, 
-  useCreateIndex: true 
+mongoose.connect(config.MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
 })
-        .then(() => {
-          console.log("successfully connected to MongoDB");
-        })
-        .catch((error) => {
-          console.log("There was an error connecting to MongoDB: ", error.message);
-        })
+  .then(() => {
+    console.log("successfully connected to MongoDB");
+  })
+  .catch((error) => {
+    console.log("There was an error connecting to MongoDB: ", error.message);
+  })
 
 app.use(cors());
 app.use(express.static('build'));
@@ -44,7 +44,7 @@ app.use("/users", usersRouter);
 app.use("/messages", conversationRouter);
 
 //For Testing Purposes Only
-if (process.env.NODE_ENV === "test"){
+if (process.env.NODE_ENV === "test") {
   const testingRouter = require("./routes/testing");
   app.use("/testing", testingRouter);
 }

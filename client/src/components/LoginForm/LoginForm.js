@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import loginRegisterStyles from "../../themes/loginAndRegister";
 import RegisterRedirect from "./RegisterRedirect";
 
-//loginUser props will be the axios post call that will take user object created here as parameter
+//loginUser prop will be an async function that takes user credential as an object
 const LoginForm = ({ loginUser }) => {
 
   const [email, setEmail] = useState("");
@@ -25,26 +25,26 @@ const LoginForm = ({ loginUser }) => {
   const submitUser = (event) => {
     event.preventDefault();
 
-      loginUser({
-        email: email,
-        password: password
-      })
-      setEmail("");
-      setPassword("");
+    loginUser({
+      email: email,
+      password: password
+    })
+    setEmail("");
+    setPassword("");
   }
 
   return (
     <div className={classes.paper}>
       <RegisterRedirect />
       <Grid container alignContent="flex-start" >
-          <Typography component="h1" variant="h4" fontWeight="fontWeightBold">
-              <b>Welcome Back!</b>
-          </Typography>
+        <Typography component="h1" variant="h4" fontWeight="fontWeightBold">
+          <b>Welcome Back!</b>
+        </Typography>
       </Grid>
       <form className={classes.form} onSubmit={submitUser}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-              <TextField
+            <TextField
               value={email}
               id="email"
               label="E-mail"
@@ -52,10 +52,10 @@ const LoginForm = ({ loginUser }) => {
               fullWidth
               autoFocus
               onChange={handleEmailChange}
-              />
+            />
           </Grid>
           <Grid item xs={12}>
-              <TextField
+            <TextField
               value={password}
               id="password"
               type="password"
@@ -63,12 +63,12 @@ const LoginForm = ({ loginUser }) => {
               required
               fullWidth
               onChange={handlePasswordChange}
-              />
+            />
           </Grid>
         </Grid>
         <Grid container justify="center">
-            <Grid item>
-              <Button
+          <Grid item>
+            <Button
               type="submit"
               id="login-button"
               variant="contained"
@@ -76,9 +76,9 @@ const LoginForm = ({ loginUser }) => {
               size="large"
               className={classes.mainButton}
               disableElevation
-              >
+            >
               <b>Login</b>
-              </Button>
+            </Button>
           </Grid>
         </Grid>
       </form>
