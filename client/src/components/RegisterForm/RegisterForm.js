@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Snackbar from '@material-ui/core/Snackbar';
@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Alert } from "@material-ui/lab";
 
-import loginRegisterStyles from "../../themes/loginAndRegister";
+import { useStyles } from "./styles"
 import LoginRedirect from "./LoginRedirect";
 
 //createUser props will be the axios post call that will take user object created here as parameter
@@ -18,8 +18,8 @@ const RegisterForm = ({ createUser }) => {
   const [email, setEmail] = useState("");
 
   const [showSnackbar, setShowSnackBar] = useState(false);
-  const [errorMessage, setErrorMessage] = useState( { });
-  const classes = loginRegisterStyles();
+  const [errorMessage, setErrorMessage] = useState({});
+  const classes = useStyles();
 
   const validate = () => {
     let errors = {};
@@ -69,84 +69,88 @@ const RegisterForm = ({ createUser }) => {
   }
 
   return (
-    <div className={classes.paper}>
-      <LoginRedirect/>
-      <Grid container alignContent="flex-start">
-          <Typography component="h1" variant="h4">
-              <b>Create an account</b>
-          </Typography>
-      </Grid>
-      <form className={classes.form} onSubmit={registerUser}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
+    <div className={classes.container}>
+      <LoginRedirect />
+      <div className={classes.formContainer}>
+        <Typography variant="h4" className={classes.headerText}>
+          <b>Create an account</b>
+        </Typography>
+        <form onSubmit={registerUser}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} className={classes.inputField}>
               <TextField
-              value={username}
-              label="Username"
-              id="username"
-              required
-              fullWidth
-              autoFocus
-              onChange={handleUsernameChange}
-              error={Boolean(errorMessage.username)}
-              helperText={errorMessage.username ? errorMessage.username : ""}
+                value={username}
+                label="Username"
+                id="username"
+                required
+                fullWidth
+                autoFocus
+                autoComplete='off'
+                onChange={handleUsernameChange}
+                error={Boolean(errorMessage.username)}
+                helperText={errorMessage.username ? errorMessage.username : ""}
               />
-          </Grid>
-          <Grid item xs={12}>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
-              value={nickName}
-              label="Name"
-              id="name"
-              required
-              fullWidth
-              onChange={handleNickNameChange}
+                value={nickName}
+                label="Name"
+                id="name"
+                required
+                fullWidth
+                autoComplete='off'
+                onChange={handleNickNameChange}
               />
-          </Grid>
-          <Grid item xs={12}>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
-              value={email}
-              label="E-mail Address"
-              id="email"
-              required
-              fullWidth
-              onChange={handleEmailChange}
-              error={Boolean(errorMessage.email)}
-              helperText={errorMessage.email ? errorMessage.email : ""}
+                value={email}
+                label="E-mail Address"
+                id="email"
+                required
+                fullWidth
+                autoComplete='off'
+                onChange={handleEmailChange}
+                error={Boolean(errorMessage.email)}
+                helperText={errorMessage.email ? errorMessage.email : ""}
               />
-          </Grid>
-          <Grid item xs={12}>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
-              value={password}
-              type="password"
-              label="Password"
-              id="password"
-              required
-              fullWidth
-              onChange={handlePasswordChange}
-              error={Boolean(errorMessage.password)}
-              helperText={errorMessage.password? errorMessage.password : ""}
+                value={password}
+                type="password"
+                label="Password"
+                id="password"
+                required
+                fullWidth
+                autoComplete='off'
+                onChange={handlePasswordChange}
+                error={Boolean(errorMessage.password)}
+                helperText={errorMessage.password ? errorMessage.password : ""}
               />
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container justify="center">
+          <Grid container justify="center">
             <Grid item>
               <Button
-              id="create-button"
-              type="submit"
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.mainButton}
-              disableElevation
+                id="create-button"
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+                className={classes.mainButton}
+                disableElevation
               >
                 <b>
                   Create
                 </b>
               </Button>
             </Grid>
-        </Grid>
-      </form>
+          </Grid>
+        </form>
+      </div>
       <div>
-        <Snackbar anchorOrigin={{ vertical: "top", horizontal: "right"}} open = {showSnackbar} autoHideDuration={3000} onClose={handleCloseSnack}>
+        <Snackbar anchorOrigin={{ vertical: "top", horizontal: "right" }} open={showSnackbar} autoHideDuration={3000} onClose={handleCloseSnack}>
           <Alert onClose={handleCloseSnack} severity="error">
             Please make sure all inputs are valid.
           </Alert>

@@ -8,10 +8,12 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { useHistory } from "react-router-dom";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-
-const AccountMenu = ({setUser}) => {
+import { useStyles } from './styles';
+const AccountMenu = ({ setCurrentUser }) => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
+
+  const classes = useStyles();
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -36,7 +38,7 @@ const AccountMenu = ({setUser}) => {
   const handleLogOut = (event) => {
     window.localStorage.removeItem("userAuthenticated");
     history.push("/register");
-    setUser(null);
+    setCurrentUser(null);
   }
 
   // return focus to the button when we transitioned from !open -> open
@@ -50,44 +52,44 @@ const AccountMenu = ({setUser}) => {
   }, [open]);
 
   return (
-      <div>
-        <Button
-          ref={anchorRef}
-          id="show-account-setting"
-          onClick={handleToggle}
-          size="large" 
-          startIcon={<MoreHorizIcon/>}
-        >
-        </Button>
-        <Popper
-          open={open}
-          anchorEl={anchorRef.current}
-          placement="bottom-start"
-          transition
-          disablePortal
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === 'bottom-start' ? 'left top' : 'left bottom',
-              }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocusItem={open}
-                    onKeyDown={handleListKeyDown}
-                  >
-                    <MenuItem id="logout-button" onClick={handleLogOut}>Logout</MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
+    <div className={classes.accountSettings}>
+      <Button
+        ref={anchorRef}
+        id="show-account-setting"
+        onClick={handleToggle}
+        size="large"
+      >
+        <MoreHorizIcon />
+      </Button>
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        placement="bottom-start"
+        transition
+        disablePortal
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === 'bottom-start' ? 'left top' : 'left bottom',
+            }}
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList
+                  autoFocusItem={open}
+                  onKeyDown={handleListKeyDown}
+                >
+                  <MenuItem id="logout-button" onClick={handleLogOut}>Logout</MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </div>
   );
 }
 
