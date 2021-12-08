@@ -2,6 +2,15 @@
 
 https://tk-messanger-app.herokuapp.com/
 
+If you do not wish to create an Account, feel free to use the ones below. The best way to test this application is to open two windows and log in to two separate accounts.
+
+#### Dummy Accounts
+Email: Tony@gmail.com
+Password: Tony123
+
+Email: Bob@gmail.com
+Password: Bob123
+
 # Messanger Application
 
 This is a fullstack application built using React with MaterialUI for Frontend and Node.js/Express for Backend. 
