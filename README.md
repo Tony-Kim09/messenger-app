@@ -26,6 +26,10 @@ After logging in, users can click on any existing users on the left hand side to
 
 ![Chat Page](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/MessengerChatPage.PNG)
 
+This application is mobile responsive to ensure users can fully experince the app regardless of the device they are using. 
+
+![Mobile Responsive](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/MobileResponsive.PNG)
+
 I have thoroughly tested the backend to ensure the APIs are properly functioning using Mocha/Chai.
 
 ![BackEnd Test](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/backendUnitTest.PNG)
