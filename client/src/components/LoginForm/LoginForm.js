@@ -3,8 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-
-import loginRegisterStyles from "../../themes/loginAndRegister";
+import { useStyles } from "./styles"
 import RegisterRedirect from "./RegisterRedirect";
 
 //loginUser prop will be an async function that takes user credential as an object
@@ -13,7 +12,7 @@ const LoginForm = ({ loginUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const classes = loginRegisterStyles();
+  const classes = useStyles();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -34,54 +33,55 @@ const LoginForm = ({ loginUser }) => {
   }
 
   return (
-    <div className={classes.paper}>
+    <div className={classes.container}>
       <RegisterRedirect />
-      <Grid container alignContent="flex-start" >
-        <Typography component="h1" variant="h4" fontWeight="fontWeightBold">
+      <div className={classes.formContainer}>
+        <Typography variant="h4" className={classes.headerText} >
           <b>Welcome Back!</b>
         </Typography>
-      </Grid>
-      <form className={classes.form} onSubmit={submitUser}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              value={email}
-              id="email"
-              label="E-mail"
-              required
-              fullWidth
-              autoFocus
-              onChange={handleEmailChange}
-            />
+        <form onSubmit={submitUser}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} className={classes.inputField}>
+              <TextField
+                value={email}
+                id="email"
+                label="E-mail"
+                fullWidth
+                autoFocus
+                autoComplete='off'
+                onChange={handleEmailChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                value={password}
+                id="password"
+                type="password"
+                label="Password"
+                fullWidth
+                autoComplete='off'
+                onChange={handlePasswordChange}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              value={password}
-              id="password"
-              type="password"
-              label="Password"
-              required
-              fullWidth
-              onChange={handlePasswordChange}
-            />
+          <Grid container justify="center">
+            <Grid item>
+              <Button
+                type="submit"
+                id="login-button"
+                variant="contained"
+                color="primary"
+                size="large"
+                className={classes.mainButton}
+                disableElevation
+              >
+                <b>Login</b>
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container justify="center">
-          <Grid item>
-            <Button
-              type="submit"
-              id="login-button"
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.mainButton}
-              disableElevation
-            >
-              <b>Login</b>
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+        </form>
+      </div>
+
     </div>
   );
 }

@@ -3,10 +3,10 @@ import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import loginRegisterStyles from "../../themes/loginAndRegister";
+import { useStyles } from "./styles"
 
 const RedirectToRegister = () => {
-  const classes = loginRegisterStyles();
+  const classes = useStyles();
   const history = useHistory();
 
   const redirectButton = () => {
@@ -14,23 +14,23 @@ const RedirectToRegister = () => {
   }
 
   return (
-    <div className={classes.loginRegisterRedirect}>
+    <div className={classes.redirectContainer}>
       <Grid container justify="flex-end" spacing={2}>
         <Grid item>
-          <Typography className={classes.loginRedirectText} variant="subtitle1">
-          Don't have an account?
+          <Typography className={classes.redirectText} variant="subtitle1">
+            Don't have an account?
           </Typography>
         </Grid>
         <Grid item>
           <Button
-              type="button"
-              variant="contained"
-              color="secondary"
-              size="large"
-              className={classes.secondaryButton}
-              onClick={redirectButton}
-              >
-              <b>Create</b>
+            type="button"
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.redirectButton}
+            onClick={redirectButton}
+          >
+            <b>Create</b>
           </Button>
         </Grid>
       </Grid>

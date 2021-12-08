@@ -15,10 +15,9 @@ io.on("connection", (socket) => {
   socket.on("join", (conversationInfo) => {
 
     socket.join(conversationInfo.id);
-    socket.emit("message", { sender: "Admin", text: `You are now talking to ${conversationInfo.target}`});
   })
 
-  socket.on("sendMessage", ({currentConversationID, msg}) => {
+  socket.on("sendMessage", ({ currentConversationID, msg }) => {
     io.to(currentConversationID).emit("message", msg);
   });
 

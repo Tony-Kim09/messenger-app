@@ -1,10 +1,11 @@
-import UserList from "./UserList";
+import UserList from "./UserList/UserList";
 import FilterInput from "./FilterContacts/FilterInput";
 import React, { useState } from "react";
 import { Typography } from "@material-ui/core";
-import useStyles from '../../themes/messengerStyle'
+import { useStyles } from "./styles";
+import CurrentUserBox from "./CurrentUserBox/CurrentUserBox";
 
-const UserPanel = ({users, startConversation}) => {
+const UserPanel = ({ currentUser, setCurrentUser, users, startConversation }) => {
   const [filteredName, setFilter] = useState("");
 
   const handleFilter = (event) => {
@@ -14,12 +15,13 @@ const UserPanel = ({users, startConversation}) => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Typography className={classes.chatHeaderText} variant="h4" style={{marginBottom: 10}} >Chats</Typography>
+    <div className={classes.userPanelContainer}>
+      <CurrentUserBox currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <Typography className={classes.chatHeaderText} variant="h4">Chats</Typography>
       <FilterInput name={filteredName} handler={handleFilter} />
       <UserList users={users} filterUser={filteredName} startConversation={startConversation} />
     </div>
   );
-} 
+}
 
 export default UserPanel;
