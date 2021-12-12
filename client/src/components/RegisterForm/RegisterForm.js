@@ -130,7 +130,7 @@ const RegisterForm = ({ createUser }) => {
               />
             </Grid>
           </Grid>
-          <Grid container justify="center">
+          <Grid container justifyContent="center">
             <Grid item>
               <Button
                 id="create-button"

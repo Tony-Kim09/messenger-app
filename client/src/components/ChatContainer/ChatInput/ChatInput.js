@@ -32,14 +32,11 @@ const ChatInput = ({ sendMessage, text, setText }) => {
         />
         <IconButton
           aria-label="send-message"
-          disabled="true"
           disabled={text.trim() === ""}
           type="button"
           onClick={sendMessage}
           variant="contained"
           color="primary"
-          size="large"
-          disableElevation
         >
           <SendIcon />
         </IconButton>

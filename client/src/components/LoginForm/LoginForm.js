@@ -64,7 +64,7 @@ const LoginForm = ({ loginUser }) => {
               />
             </Grid>
           </Grid>
-          <Grid container justify="center">
+          <Grid container justifyContent="center">
             <Grid item>
               <Button
                 type="submit"
