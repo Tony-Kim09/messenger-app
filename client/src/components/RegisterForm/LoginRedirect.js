@@ -15,7 +15,7 @@ const RedirectToLogin = () => {
 
   return (
     <div className={classes.redirectContainer}>
-      <Grid container justify="flex-end" spacing={2}>
+      <Grid container justifyContent="flex-end" spacing={2}>
         <Grid item>
           <Typography className={classes.redirectText} variant="subtitle1">
             Already have an account?

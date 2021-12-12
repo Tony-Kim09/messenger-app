@@ -41,7 +41,7 @@ const Messenger = () => {
       // Set Current User 
       const userLoggedIn = JSON.parse(loggedUserJSON);
       setCurrentUser(userLoggedIn);
-
+      messengerService.setToken(userLoggedIn.token);
       //Set all current Users
       usersService.getUsers({ username: userLoggedIn.username })
         .then(userList => setUsers(userList));
@@ -80,13 +80,17 @@ const Messenger = () => {
   }, []);
 
   //Send user message to Server
-  const sendMessage = (event) => {
+  const sendMessage = async (event) => {
     event.preventDefault();
-    const trimmedText = text.trim();
-    const msg = { sender: currentUser.username, text: trimmedText };
+    const message = text.trim();
 
-    if (msg) {
-      socket.emit("sendMessage", ({ currentConversationID, msg }), () => setText(""));
+    //For socket messages
+    const messageToSend = { sender: { username: currentUser.username }, text: message };
+
+    if (message) {
+      const returnedMessage = await messengerService.saveMessage(currentConversationID, message);
+
+      socket.emit("sendMessage", ({ currentConversationID, msg: messageToSend }), () => setText(""));
     }
     setText("");
   }

@@ -27,3 +27,5 @@ server/.env
 post_user.rest
 post_login.rest
 post_conversation.rest
+post_message.rest
+post_reset.rest

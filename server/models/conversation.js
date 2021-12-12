@@ -1,25 +1,33 @@
 const mongoose = require('mongoose')
 
-//Rough Idea for Storing Messages for future purposes
+const messageSchema = new mongoose.Schema(
+  {
+    sender: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    text: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
 const conversationSchema = new mongoose.Schema({
   //Will use Username as they are unique
-    participants:{
-      type: [{type: String}],
-      required: true
-    },
-    messages: [{
-      sender: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-      },
-      message: String,
-      createdOn: {
-        type: Date,
-        default: new Date("<YYYY-mm-ddTHH:MM:ss>")
-      }
-    }]
-  })
+  participants: {
+    type: [{ type: String }],
+    required: true
+  },
+  messages: {
+    type: [messageSchema],
+    default: [],
+  },
+  lastMessage: {
+    type: messageSchema,
+  }
+})
 
 conversationSchema.set('toJSON', {
   transform: (document, returnedObject) => {

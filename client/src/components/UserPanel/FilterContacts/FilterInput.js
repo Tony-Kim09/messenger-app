@@ -2,7 +2,6 @@ import React from "react"
 import { IconButton, InputBase, Paper } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from "@material-ui/core/styles";
-import { ClassNames } from "@emotion/react";
 
 const Filter = ({ name, handler }) => {
 
@@ -24,7 +23,7 @@ const Filter = ({ name, handler }) => {
       className={classes.searchContainer}
       elevation={0}
     >
-      <IconButton aria-label="search" disabled="true">
+      <IconButton aria-label="search" disabled={true}>
         <SearchIcon />
       </IconButton>
       <InputBase
