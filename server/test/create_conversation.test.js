@@ -1,7 +1,7 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const app = require("../app.js");
-const Conversation = require("../models/conversation");
+const Conversation = require("../models/Conversation");
 const mongoose = require('mongoose')
 
 chai.should();
@@ -16,7 +16,7 @@ const users = {
 };;
 
 const existingConversation = {
-  usernames: ["tommy", "clara"]
+    usernames: ["tommy", "clara"]
 };
 
 const notEnoughParticipants = {
@@ -24,7 +24,7 @@ const notEnoughParticipants = {
 };
 before(async () => {
     await Conversation.deleteMany({})
-    const existingConvo = new Conversation({participants: ["tommy", "clara"]});
+    const existingConvo = new Conversation({ participants: ["tommy", "clara"] });
     await existingConvo.save();
 });
 
@@ -33,26 +33,26 @@ describe("/POST messages", () => {
 
     it("Create new conversation", done => {
         chai
-        .request(app)
-        .post(`/messages/`)
-        .send(users)
-        .end((err, response) => {
-            response.should.have.status(201);
-            done();
-        });
+            .request(app)
+            .post(`/messages/`)
+            .send(users)
+            .end((err, response) => {
+                response.should.have.status(201);
+                done();
+            });
     });
     it("Not Enough Participants", done => {
-    chai
-        .request(app)
-        .post(`/messages/`)
-        .send(notEnoughParticipants)
-        .end((err, response) => {
-        response.should.have.status(400);
-        response.body.should.have
-            .property("error")
-            .eql("Need 2 people to start a conversation");
-        done();
-        });
+        chai
+            .request(app)
+            .post(`/messages/`)
+            .send(notEnoughParticipants)
+            .end((err, response) => {
+                response.should.have.status(400);
+                response.body.should.have
+                    .property("error")
+                    .eql("Need 2 people to start a conversation");
+                done();
+            });
     });
 });
 

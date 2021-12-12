@@ -1,7 +1,7 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const app = require("../app.js");
-const User = require("../models/user");
+const User = require("../models/User");
 const mongoose = require('mongoose')
 
 chai.should();
@@ -34,16 +34,16 @@ before(async () => {
 describe("First Create User to use for Login", () => {
     it("it should return 201", done => {
         chai
-        .request(app)
-        .post(`/register/`)
-        .send(newUser)
-        .end((err, response) => {
-            response.should.have.status(201);
-            response.body.should.have
-            .property("name")
-            .eql("log");
-            done();
-        });
+            .request(app)
+            .post(`/register/`)
+            .send(newUser)
+            .end((err, response) => {
+                response.should.have.status(201);
+                response.body.should.have
+                    .property("name")
+                    .eql("log");
+                done();
+            });
     });
 });
 
@@ -51,29 +51,29 @@ describe("/POST login", () => {
 
     it("it should return 200", done => {
         chai
-        .request(app)
-        .post(`/login/`)
-        .send(userLogin)
-        .end((err, response) => {
-            response.should.have.status(200);
-            response.body.should.have
-            .property("name")
-            .eql("log");
-            done();
-        });
+            .request(app)
+            .post(`/login/`)
+            .send(userLogin)
+            .end((err, response) => {
+                response.should.have.status(200);
+                response.body.should.have
+                    .property("name")
+                    .eql("log");
+                done();
+            });
     });
     it("it should return 401", done => {
         chai
-        .request(app)
-        .post(`/login/`)
-        .send(falseLogin)
-        .end((err, response) => {
-            response.should.have.status(401);
-            response.body.should.have
-            .property("error")
-            .eql("invalid username or password");
-            done();
-        });
+            .request(app)
+            .post(`/login/`)
+            .send(falseLogin)
+            .end((err, response) => {
+                response.should.have.status(401);
+                response.body.should.have
+                    .property("error")
+                    .eql("invalid username or password");
+                done();
+            });
     });
 });
 

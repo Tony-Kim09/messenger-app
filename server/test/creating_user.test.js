@@ -1,7 +1,7 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const app = require("../app.js");
-const User = require("../models/user");
+const User = require("../models/User");
 const mongoose = require('mongoose');
 
 chai.should();
@@ -33,29 +33,29 @@ describe("/POST register", () => {
 
     it("it should return 201", done => {
         chai
-        .request(app)
-        .post(`/register/`)
-        .send(newUser)
-        .end((err, response) => {
-            response.should.have.status(201);
-            response.body.should.have
-            .property("name")
-            .eql("test");
-            done();
-        });
+            .request(app)
+            .post(`/register/`)
+            .send(newUser)
+            .end((err, response) => {
+                response.should.have.status(201);
+                response.body.should.have
+                    .property("name")
+                    .eql("test");
+                done();
+            });
     });
     it("Incorrect Password Length", done => {
-    chai
-        .request(app)
-        .post(`/register/`)
-        .send(passwordTooShort)
-        .end((err, response) => {
-        response.should.have.status(400);
-        response.body.should.have
-            .property("error")
-            .eql("password must be at least 6 characters long");
-        done();
-        });
+        chai
+            .request(app)
+            .post(`/register/`)
+            .send(passwordTooShort)
+            .end((err, response) => {
+                response.should.have.status(400);
+                response.body.should.have
+                    .property("error")
+                    .eql("password must be at least 6 characters long");
+                done();
+            });
     });
 });
 
