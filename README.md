@@ -24,7 +24,7 @@ New users can register using this simple and intuitive register page. Validation
 
 After logging in, users can click on any existing users on the left hand side to begin chatting with them. To test it out, I recommend opening two separate browsers for the real time chatting experience. 
 
-![Chat Page](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/MessengerChatPage.PNG)
+![Chat Page](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/ChatPage.PNG)
 
 This application is mobile responsive to ensure users can fully experince the app regardless of the device they are using. 
 
