@@ -2,11 +2,12 @@ const testingRouter = require("express").Router();
 const User = require("../models/User");
 const Conversation = require("../models/Conversation");
 
-testingRouter.post("/reset", async (request, response) => {
+//Reset database
+testingRouter.post("/reset", async (req, res) => {
     await User.deleteMany({});
     await Conversation.deleteMany({});
 
-    response.status(204).end();
+    res.status(204).end();
 })
 
 module.exports = testingRouter;

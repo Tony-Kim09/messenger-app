@@ -3,13 +3,13 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const create = async (request, response) => {
-  const body = request.body;
+const create = async (req, res) => {
+  const body = req.body;
 
   //Check if password is at least 6 characters 
   const MINIMUM_PASSWORD_LENGTH = 6;
   if (body.password.length < MINIMUM_PASSWORD_LENGTH) {
-    return response.status(400).json({ error: "password must be at least 6 characters long" });
+    return res.status(400).json({ error: "password must be at least 6 characters long" });
   }
 
   //Hash and Salt password using Bcrypt
@@ -20,14 +20,14 @@ const create = async (request, response) => {
   const requestedUsername = sanitize(body.username);
   const userExists = await User.findOne({ username: requestedUsername });
   if (userExists) {
-    return response.status(400).json({ error: "Username already exists" })
+    return res.status(400).json({ error: "Username already exists" })
   }
 
   //Sanitize email then check if the email is already used
   const requestedEmail = sanitize(body.email);
   const emailExists = await User.findOne({ email: requestedEmail });
   if (emailExists) {
-    return response.status(400).json({ error: "Email has already been used" })
+    return res.status(400).json({ error: "Email has already been used" })
   }
 
   const name = sanitize(body.name);
@@ -49,7 +49,7 @@ const create = async (request, response) => {
 
   const token = jwt.sign(userForToken, process.env.SECRET);
 
-  response.status(201).send({ token, name: savedUser.name, username: savedUser.username });
+  res.status(201).send({ token, name: savedUser.name, username: savedUser.username });
 }
 
 const registerController = { create };

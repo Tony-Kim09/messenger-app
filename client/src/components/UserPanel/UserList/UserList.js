@@ -8,7 +8,7 @@ const UserList = ({ users, filterUser, startConversation }) => {
     if (cur.username.toLowerCase().includes(filterUser.toLowerCase())) {
       return [...acc,
       <ListItem disableGutters={true} style={{ padding: 1 }} key={cur.id} onClick={() => startConversation(cur)}>
-        <User username={cur.username} />
+        <User username={cur.username} avatarID={cur.avatar} />
       </ListItem>
       ];
     }

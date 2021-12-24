@@ -9,7 +9,11 @@ const CurrentUserBox = ({ currentUser, setCurrentUser }) => {
   return (
     <Container className={classes.currentUserContainer}>
       <div className={classes.avatarNameContainer}>
-        <Avatar className={classes.currentUserAvatarColor} />
+        <Avatar className={classes.currentUserAvatarColor}
+          // Check if user exists first then check if they have avatar. 
+          // bandaid solution for now, will have to look for better method
+          src={currentUser ? currentUser.avatar ? `/users/avatar/${currentUser.avatar}` : "" : ""}
+        />
         <Typography className={classes.currentUserName} >
           <b>{currentUser ? currentUser.username : "None"}</b>
         </Typography>

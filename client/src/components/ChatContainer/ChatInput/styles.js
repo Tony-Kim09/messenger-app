@@ -5,14 +5,15 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "horizontal",
     alignItems: "center",
-    background: `rgba(163, 198, 255, 0.3)`,
+    background: `#F4F6FA`,
     height: 80,
-    borderRadius: 20,
+    borderRadius: 10,
     margin: theme.spacing(0, 2, 2, 2),
-    padding: theme.spacing(0, 4),
+    padding: theme.spacing(0, 1, 0, 4),
 
     [theme.breakpoints.down("sm")]: {
       margin: theme.spacing(0, 2, 2, 2),
+      padding: theme.spacing(0, 0, 0, 4),
       height: 60
     },
   },

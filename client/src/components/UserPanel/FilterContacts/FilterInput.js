@@ -7,7 +7,7 @@ const Filter = ({ name, handler }) => {
 
   const useStyles = makeStyles((theme) => ({
     searchContainer: {
-      background: `rgba(163, 198, 255, 0.3)`,
+      background: `#E9EEF9`,
       height: 65,
       display: 'flex',
       alignItems: 'center',

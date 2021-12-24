@@ -5,11 +5,11 @@ https://tk-messanger-app.herokuapp.com/
 If you do not wish to create an Account, feel free to use the ones below. The best way to test this application is to open two windows and log in to two separate accounts.
 
 #### Dummy Accounts
-Email: Tony@gmail.com
-Password: Tony123
+Email: thomas@gmail.com
+Password: thomas123
 
-Email: Bob@gmail.com
-Password: Bob123
+Email: cheng@gmail.com
+Password: cheng123
 
 # Messanger Application
 
@@ -29,6 +29,10 @@ After logging in, users can click on any existing users on the left hand side to
 This application is mobile responsive to ensure users can fully experince the app regardless of the device they are using. 
 
 ![Mobile Responsive](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/MobileResponsive.PNG)
+
+You can also update profile picture with few simple clicks and will be stored using GridFS storage and MongoDB.
+
+![Mobile Responsive](https://github.com/Tony-Kim09/messenger-app/blob/dev/imgs/updateProfilePic.PNG)
 
 I have thoroughly tested the backend to ensure the APIs are properly functioning using Mocha/Chai.
 
