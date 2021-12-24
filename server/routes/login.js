@@ -1,5 +1,7 @@
 const loginRouter = require("express").Router();
 const loginController = require("../controllers/loginController");
-loginRouter.post("/", async (request, response) => loginController.login(request, response));
+
+//Logging in route
+loginRouter.post("/", async (req, res) => loginController.login(req, res));
 
 module.exports = loginRouter;

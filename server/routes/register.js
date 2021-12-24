@@ -1,6 +1,7 @@
 const registerRouter = require("express").Router();
 const registerController = require("../controllers/registerController");
 
-registerRouter.post("/", async (request, response) => registerController.create(request, response));
+//Create a new account
+registerRouter.post("/", async (req, res) => registerController.create(req, res));
 
 module.exports = registerRouter;

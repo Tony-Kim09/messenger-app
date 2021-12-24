@@ -3,8 +3,8 @@ const sanitize = require("mongo-sanitize");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
-const login = async (request, response) => {
-  const body = request.body;
+const login = async (req, res) => {
+  const body = req.body;
 
   const sanitizedEmail = sanitize(body.email);
 
@@ -16,7 +16,7 @@ const login = async (request, response) => {
     : await bcrypt.compare(body.password, user.password);
 
   if (!(user && passwordIsCorrect)) {
-    return response.status(401).json({
+    return res.status(401).json({
       error: "invalid username or password"
     });
   }
@@ -30,9 +30,8 @@ const login = async (request, response) => {
   //Use the SECRET in .env to sign the token that expires in 7 days
   const token = jwt.sign(userToken, process.env.SECRET, { expiresIn: "7d" });
   console.log("can successfully log in")
-  response
-    .status(200)
-    .send({ token, username: user.username, name: user.name });
+  res.status(200)
+    .send({ token, username: user.username, name: user.name, avatar: user.avatar });
 }
 
 const loginController = { login };

@@ -1,8 +1,6 @@
 import axios from "axios";
-
+import { token } from "../helper/token"
 const baseUrl = "/messages";
-
-let token = null
 
 const createConversation = async usernames => {
   const response = await axios.post(baseUrl, usernames);
@@ -14,7 +12,6 @@ const saveMessage = async (conversationID, message) => {
   const config = {
     headers: { Authorization: `${token}` }
   };
-
   const response = await axios.post(
     `${baseUrl}/${conversationID}`,
     { message },
@@ -23,13 +20,8 @@ const saveMessage = async (conversationID, message) => {
   return response.data;
 }
 
-const setToken = newToken => {
-  token = `bearer ${newToken}`;
-}
-
 const messengerService = {
   createConversation,
   saveMessage,
-  setToken
 };
 export default messengerService;

@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import io from "socket.io-client";
+import socket from "../../socket-client/socket";
 import usersService from "../../services/users";
 import messengerService from "../../services/messenger";
+import { setToken } from "../../helper/token"
 import UserPanel from "../../components/UserPanel/UserPanel";
 import { Box } from "@mui/system";
 import ChatContainer from "../../components/ChatContainer/ChatContainer";
 import { Grid, Typography } from "@material-ui/core";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import { useStyles } from './styles';
-
-let socket;
 
 const Messenger = () => {
   const history = useHistory();
@@ -33,16 +32,17 @@ const Messenger = () => {
     setOpen(!open);
   }
 
-  //Initialize SocketIO and users
+  //Initialize users
   useEffect(() => {
-    socket = io();
     const loggedUserJSON = window.localStorage.getItem("userAuthenticated");
+
     if (loggedUserJSON) {
       // Set Current User 
       const userLoggedIn = JSON.parse(loggedUserJSON);
       setCurrentUser(userLoggedIn);
-      messengerService.setToken(userLoggedIn.token);
-      //Set all current Users
+      setToken(userLoggedIn.token);
+
+      //Get all other Users
       usersService.getUsers({ username: userLoggedIn.username })
         .then(userList => setUsers(userList));
     } else {
@@ -54,7 +54,7 @@ const Messenger = () => {
   //Function for Starting Chat
   const startConversation = async (target) => {
     setMessages([]);
-    setCurrentlySpeakingWith(target.username);
+    setCurrentlySpeakingWith(target);
     const participants = { usernames: [currentUser.username, target.username] };
 
     const conversation = await messengerService.createConversation(participants)
@@ -104,7 +104,7 @@ const Messenger = () => {
       </Grid>
       <Grid item sm={8} md={9} className={open ? classes.openPanel : classes.closePanel}>
         {existingChat ?
-          <ChatContainer currentUser={currentUser} targetName={currentlySpeakingWith} messages={messages} text={text} setText={setText} sendMessage={sendMessage} toggleOpen={toggleOpen} />
+          <ChatContainer currentUser={currentUser} targetUser={currentlySpeakingWith} messages={messages} text={text} setText={setText} sendMessage={sendMessage} toggleOpen={toggleOpen} />
           :
           <Box className={classes.noChatContainer} >
             <IoChatbubbleEllipsesSharp className={classes.noChatIcon} />

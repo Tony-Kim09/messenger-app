@@ -5,7 +5,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core/styles";
 import { stringToHslColor } from "../../../helper/functions";
 
-const User = ({ username }) => {
+const User = ({ username, avatarID }) => {
 
   const avatarBGColor = stringToHslColor(username, 50, 80);
 
@@ -21,8 +21,8 @@ const User = ({ username }) => {
     },
     avatarColor: {
       background: `${avatarBGColor}`,
-      width: "50px",
-      height: "50px"
+      width: "60px",
+      height: "60px"
     }
   }))
 
@@ -32,7 +32,9 @@ const User = ({ username }) => {
     <Card className={classes.userCardContainer} elevation={0}>
       <CardHeader
         avatar={
-          <Avatar className={classes.avatarColor} aria-label="users" >
+          <Avatar className={classes.avatarColor}
+            src={avatarID ? `/users/avatar/${avatarID}` : ""}
+            aria-label="users" >
             {username.substring(0, 1).toUpperCase()}
           </Avatar>
         }

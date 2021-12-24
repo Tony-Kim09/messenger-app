@@ -20,7 +20,7 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-start",
   },
   sentMessageBackground: {
-    background: "linear-gradient(90deg, rgba(58, 141, 255, 0.85), rgba(134, 185, 255, 0.85))",
+    background: "linear-gradient(90deg, rgba(58,141,255,1) 0%, rgba(107,169,255,0.85) 100%)",
     color: "white",
     borderBottomLeftRadius: 18,
     borderTopLeftRadius: 18,

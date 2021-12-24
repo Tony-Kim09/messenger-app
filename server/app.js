@@ -2,9 +2,9 @@ const express = require("express");
 require("express-async-errors")
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const mongoose = require("mongoose");
-const config = require('./utils/config');
 const cors = require("cors")
+
+const { connectToDB } = require("./db/connect");
 
 const registerRouter = require("./routes/register");
 const loginRouter = require("./routes/login");
@@ -17,18 +17,7 @@ const { json, urlencoded } = express;
 
 const app = express();
 
-mongoose.connect(config.MONGODB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-})
-  .then(() => {
-    console.log("successfully connected to MongoDB");
-  })
-  .catch((error) => {
-    console.log("There was an error connecting to MongoDB: ", error.message);
-  })
+connectToDB();
 
 app.use(cors());
 app.use(express.static('build'));
