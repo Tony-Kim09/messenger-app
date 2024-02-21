@@ -1,15 +1,6 @@
 # Demo URL
 
-https://tk-messanger-app.herokuapp.com/
-
-If you do not wish to create an Account, feel free to use the ones below. The best way to test this application is to open two windows and log in to two separate accounts.
-
-#### Dummy Accounts
-Email: thomas@gmail.com
-Password: thomas123
-
-Email: cheng@gmail.com
-Password: cheng123
+Demo is currently unavailable as herokue is no longer free. Feel free to run the application on your environment to check out the application.
 
 # Messanger Application
 
